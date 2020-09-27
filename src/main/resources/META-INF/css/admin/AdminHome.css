@@ -1,0 +1,19 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: Arial;
+	font-size: 12px;
+}
+
+.wrapper {
+	width: 1500px;
+	margin: auto;
+	font-size: 12px;
+	font-family: Arial;
+	background: #f6f6f6;
+}
+
+.wrapper>.content {
+	display: flex;
+	height: 1000px;
+}

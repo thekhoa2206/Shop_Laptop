@@ -1,0 +1,118 @@
+body{
+	background: #e5e3e3;
+}
+.main{
+	width: 1300px;
+	margin: auto;
+}
+.main > .title{
+	margin-top: 20px;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.main > .content{
+	width: 1300px;
+	display: flex;
+}
+.main > .content > .left{
+	width: 900px;
+	height: 150px;
+	display: flex;
+	margin-left: 20px;
+	border-radius: 3px;
+	background: white;
+}
+.main > .content > .left > .avt > img{
+	width: 150px;
+}
+.main > .content > .left > .content{
+	display: flex;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.main > .content > .left > .content > .info-left{
+	width: 500px;
+}
+.main > .content > .left > .content > .info-left a{
+	text-decoration: none;
+	color: black;
+}
+.main > .content > .left > .content > .info-left .dele{
+	color: blue;
+}
+.main > .content > .left > .content > .info-left .dele:hover{
+	text-decoration: underline;
+}
+.main > .content > .left > .content > .info-left a:hover{
+	color: #be2816;
+}
+.main > .content > .left > .content > .info-right{
+	width: 270px;
+	display: flex;
+	margin-left: 20px;
+}
+.main > .content > .left > .content > .info-right .price{
+	width: 100px;
+	margin-top: 10px;
+}
+.main > .content > .left > .content > .info-right .price span{
+	font-weight: bold;
+	font-size: 15px;
+}
+.main > .content > .left > .content > .info-right > .num-product{
+	width: 100px;
+	height: 30px;
+	border: 1px solid #edebea;
+	border-radius: 3px;
+	text-align: center;
+	cursor: pointer;
+}
+.main > .content > .left > .content > .info-right > .num-product input{
+	width: 25px;
+	height: 26px;
+	text-align: center;
+	border: 1px solid #edebea;
+	border-top: 0px;
+	border-bottom: 0px;
+}
+
+.main > .content > .left > .content > .info-right > .num-product span{
+
+}
+.main > .content > .right{
+	width: 300px;
+	margin-left: 20px;
+	background: white;
+	border-radius: 2px;
+}
+.main > .content > .right > .title{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.main > .content > .right > .title span{
+	font-size: 18px;
+
+}
+.main > .content > .right > .content{
+	margin-top: 10px;
+	margin-left: 20px;	
+	margin-bottom: 20px;
+}
+.main > .content > .right > .content span{
+	color: #9b9898;
+}
+.main > .content > .right > .content p{
+	font-size: 15px;
+}
+.main > .content > .right > .content input{
+	width: 260px;
+	height: 40px;
+	color: white;
+	background: #f20d0d;
+	border: 0px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.main > .content > .right > .content input:hover{
+	background: #de5656;
+}

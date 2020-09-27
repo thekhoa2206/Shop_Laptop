@@ -1,0 +1,80 @@
+.main > .left > .menu{
+	width: 250px;
+	border: 1px solid red;
+	border-radius: 5px;
+	background: #ffffff;
+	color: white;
+}
+.main > .left > .menu .title{
+	line-height: 30px;
+	background: #ff9007;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+}
+.main > .left > .menu > .content > ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.main > .left > .menu > .content > ul > li > div > ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.main > .left > .menu > .content > ul > li{
+	line-height: 30px;
+	border-top: 1px solid red;
+}
+
+.main > .left > .menu > .content > ul > li > a{
+	text-decoration: none;
+	font-size: 15px;
+	color: black;
+	margin-left: 30px;
+}
+.main > .left > .menu > .content > ul > li:hover .sub-menu{
+	display: block;
+}
+.main > .left > .menu  > .content > ul > li .sub-menu{
+	width: 530px;
+	height: 300px;
+	background: #f27a7a;
+	position: absolute;
+	cursor: pointer;
+	margin-left: 251px;
+	margin-top: -31px;
+	display: none;
+}
+.main > .left > .menu > .content > ul > li > div > ul{
+	display: flex;
+}
+.main > .left > .menu > .content > ul > li div ul li{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.main > .left > .menu > .content > ul li div ul li span{
+	font-weight: bold;
+	font-size: 15px;
+}
+.main > .left > .menu > .content > ul li div ul li a{
+	text-decoration: none;
+	color: black;
+}
+.main > .left > .menu > .content ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.main > .left > .menu > .content > ul > li:hover{
+	background: #f61e1e;
+}
+.main > .left > .menu > .content > ul > li:hover a{
+	color: white;
+}
+.main > .left > .menu > .content > ul li div ul li ul{
+	display: flex;
+}
+.main > .left > .menu > .content > ul li div ul li a:hover{
+	color: black;
+}

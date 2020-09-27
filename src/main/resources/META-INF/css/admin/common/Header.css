@@ -1,0 +1,58 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: Arial;
+	font-size: 12px;
+}
+
+.wrapper {
+	width: 1500px;
+	margin: auto;
+	font-size: 12px;
+	font-family: Arial;
+	background: #f6f6f6;
+}
+
+.toolbar {
+	line-height: 50px;
+	background: #57bbf4;
+	color: white;
+	display: flex;
+}
+
+.toolbar>.left {
+	width: 250px;
+	font-size: 30px;
+	text-align: center;
+	background: #112c39;
+}
+
+.toolbar>.right {
+	display: flex;
+}
+
+.toolbar>.right>.search input {
+	margin-left: 50px;
+	height: 25px;
+	width: 200px;
+	background: white;
+	border: 0px;
+	border-radius: 5px;
+	padding-left: 5px;
+}
+
+.toolbar>.right>.content {
+	margin-top: 10px;
+	margin-left: 600px;
+}
+.toolbar>.right>.content fieldset{
+	width: 250px; 
+	line-height:20px; 
+	margin: auto;
+	margin-bottom:10px;
+	text-align: center;
+	border:0px;
+}
+.toolbar>.right>.content fieldset span{
+	font-size:15px;
+}

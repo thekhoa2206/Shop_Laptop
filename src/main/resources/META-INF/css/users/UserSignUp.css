@@ -1,0 +1,89 @@
+
+/*======================main=================*/
+.main{
+	width: 1000px;
+	margin: auto;
+	margin-top: 80px;
+}
+.main > .top{
+	display: flex;
+}
+.main > .top > .left{
+	margin-left: 100px;
+}
+.main > .top > .left span{
+	font-size: 24px;
+}
+.main > .top > .right span a{
+	text-decoration: none;
+	color: blue;
+}
+.main > .top > .right{
+	margin-left: 450px;
+}
+.main > .mid{
+	width: 800px;
+	margin: auto;
+	margin-top: 30px;
+	background: white;
+	border: 1px solid #d1dfe6;
+}
+.main > .mid > .top{
+	margin-top: 20px;
+	margin-left: 50px;
+	display: flex;
+}
+.main > .mid > .top > .left > input{
+	width: 300px;
+	line-height: 40px;
+	margin-top: 5px;
+	padding-left: 7px;
+	margin-bottom: 20px;
+}
+.main > .mid > .top > .right {
+	margin-left: 50px;
+}
+.main > .mid > .top > .right > input{
+	width: 300px;
+	line-height: 40px;
+	margin-top: 5px;
+	padding-left: 7px;
+	margin-bottom: 20px;
+}
+.main > .mid > .top > .right #radio-1,#radio-2{
+	margin: 0px;
+	padding: 0px;
+	margin-left: 30px;
+}
+.main > .mid > .top > .right select{
+	width: 80px;
+	height: 30px;
+	margin-left: 10px;
+	margin-top: 20px;
+}
+.main > .mid > .mid{
+	margin: auto;
+	width: 400px;
+	border-top: 1px solid #d1dfe6;
+}
+.main > .mid > .bot{
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 50px;
+	margin-bottom: 50px;
+}
+.main > .mid > .bot a button{
+	margin-top: 20px;
+	width: 400px;
+	line-height: 50px;
+	background: #ff9007;
+	border: 0px;
+	border-radius: 5px;
+	color: white;
+	font-size: 20px;
+}
+.main > .mid > .bot p a {
+	text-decoration: none;
+	color: blue;
+}
+

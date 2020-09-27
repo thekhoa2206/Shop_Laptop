@@ -1,0 +1,47 @@
+
+/*=====================main====================*/
+
+.main {
+	margin-top: 50px;
+}
+.main > .contact{
+	width: 800px;
+	margin: auto;
+	background: white;
+	border: 2px solid #f7bb70;
+	border-radius: 5px;
+}
+.main > .contact  .title{
+	width: 800px;
+	height: 50px;
+	text-align: center;
+}
+.main > .contact  .title span{
+	font-size: 24px;
+	color: #5783d2;
+}
+.main > .contact  .content {
+	width: 800px;
+	height: 600px;
+}
+.main > .contact   .content label{
+	margin-left: 200px;
+}
+.main > .contact  .content  input{
+	width: 400px;
+	height: 40px;
+	margin-left: 200px;
+	margin-bottom: 25px;
+	border-radius: 5px;
+	border: 1px solid #f7bb70;
+}
+.main > .contact  .content  textarea{
+	width: 400px;
+	height: 200px;
+	margin-left: 200px;
+	margin-bottom: 25px;
+	border-radius: 5px;
+	border: 1px solid #f7bb70;
+}
+
+

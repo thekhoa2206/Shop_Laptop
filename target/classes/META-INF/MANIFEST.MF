@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: com.devpro.shop Maven Webapp
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.devpro
+Build-Jdk: 1.8.0_241
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+

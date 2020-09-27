@@ -1,0 +1,189 @@
+body{
+	background: #f2efec;
+}
+.main{
+	width: 1500px;
+	background: #f2efec;
+	margin: auto;
+	margin-top: 50px;
+}
+.main > .title{
+	margin: auto;
+	width: 1000px;
+	height: 70px;
+	border-bottom: 1px solid #bdbdbc;
+	background: #ffffff;
+	border-radius: 5px 5px 0px 0px;
+}
+.main > .title > span{
+	
+	font-size: 25px;
+	margin-left: 20px;
+}
+.main > .main-top{
+	margin: auto;
+	width: 1000px;
+	height: 500px;
+	border-bottom: 1px solid #bdbdbc;
+	display: flex;
+	background: #ffffff;
+	border-radius: 0px 0px 5px 5px;
+
+}
+.main > .main-top > .left{
+	height: 500px;
+	width: 500px;
+	overflow: hidden;
+}
+.main > .main-top > .left > .slide-img a img{
+	width: 400px;
+	margin-left: 20px;
+	margin-top: 10px;
+	border-bottom: 1px dashed #bdbdbc;
+}
+.main > .main-top > .left > .slide-img a img:hover{
+	width: 500px;
+	height: 500px;
+	margin-left: -15px;
+}
+.main > .main-top > .left > .choose-img{
+	width: 500px;
+	height: 50px;
+	margin-top: 10px;
+	display: flex;
+}
+.main > .main-top > .left > .choose-img img{
+	width: 50px;
+	margin-right: 15px;
+	margin-left: 20px;
+}
+.main > .main-top > .left > .choose-img img:hover{
+	width: 60px;
+	height: 60px;
+}
+.main > .main-top > .right{
+	height: 500px;
+	width: 500px;
+	font-size: 15px;
+}
+.main > .main-top > .right .top .span1{
+	margin-top: 10px;
+	color: red;
+	font-size: 30px;
+	font-weight: bold;
+}
+.main > .main-top > .right .top del{
+	color: #d9d6d3;
+}
+.main > .main-top > .right .top span{
+	margin-right: 20px;	
+}
+.main > .main-top > .right .bottom{
+	margin-top: 20px;
+	text-align: center;
+}
+.main > .main-top > .right .bottom a div{
+	width: 450px;
+	line-height: 50px;
+	background: red;
+	border: 1px solid red;
+}
+.main > .main-top > .right .bottom a{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+}
+.main > .main-bot{
+	width: 1000px;
+	margin: auto;
+	background: #f2efec;
+	margin-top: 50px;
+}
+.main > .main-bot > .info-detail{
+	width: 1000px;
+}
+.main > .main-bot > .info-detail .title{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.main > .main-bot > .info-detail > .content{
+	display: flex;
+	width: 1000px;
+	background: #ffffff;
+	border-radius: 5px;
+}
+.main > .main-bot > .info-detail > .content ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	margin-top: 10px;
+	margin-left: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 5px 0px 0px  5px;
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+.main > .main-bot > .info-detail > .content ul li{
+	width: 700px;
+	line-height: 50px;
+}
+.main > .main-bot > .description{
+	width: 1000px;
+	margin: auto;
+	margin-top: 40px;
+}
+.main > .main-bot > .description .title{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.main > .main-bot > .description .content{
+	background: #ffffff;
+	border-radius: 5px;
+}
+.main > .main-bot > .description .content span{
+	margin-left: 30px;
+	font-size: 15px;
+}
+
+.main > .main-bot > .comment{
+	width: 1200px;
+	margin: auto;
+	margin-top: 50px;
+}
+.main > .main-bot > .comment > .title{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.main > .main-bot > .comment > .content{
+	background: #ffffff;
+	border-radius: 5px;
+	height: 450px;
+	display: flex;
+}
+.main > .main-bot > .comment > .content .left{
+	width: 600px;
+}
+.main > .main-bot > .comment > .content .right{
+	width: 600px;
+
+}
+.main > .main-bot > .comment > .content .right label{
+	font-size: 15px;
+}
+.main > .main-bot > .comment > .content .right input{
+	margin-bottom: 30px;
+	width: 500px;
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid #9d9b9b;
+	margin-top: 8px;
+}
+.main > .main-bot > .comment > .content .right textarea{
+	width: 500px;
+	height: 200px;
+	border-radius: 5px;
+	margin-top: 8px;
+}
