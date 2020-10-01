@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.devpro.entities.Category;
 import com.devpro.entities.Contact;
+import com.devpro.entities.Product;
 import com.devpro.repositories.CategoryRepo;
 import com.devpro.repositories.ContactRepo;
+import com.devpro.repositories.ProductRepo;
 
 
 

@@ -20,8 +20,7 @@ var Product = {
 
 			dataType : "json", // dữ liệu từ web-service trả về là json.
 			success : function(jsonResult) { // được gọi khi web-service trả
-												// về dữ liệu.
-
+				// về dữ liệu.
 				// alert(jsonResult.data.seo);
 				// alert(jsonResult.data.status);
 				// alert(jsonResult.message);

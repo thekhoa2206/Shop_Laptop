@@ -121,13 +121,13 @@ public class Product extends BaseEntity {
 	}
 
 	public String getPriceVN() {
+		Locale locale = new Locale("vi", "VN");
+		NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+		priceVN = fmt.format(price);
 		return priceVN;
 	}
 
 	public void setPriceVN(String priceVN) {
-		Locale locale = new Locale("vi", "VN");
-		NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-		priceVN = fmt.format(price);
 		this.priceVN = priceVN;
 	}
 

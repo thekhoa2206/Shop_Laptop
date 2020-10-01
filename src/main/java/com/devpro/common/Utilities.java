@@ -8,9 +8,10 @@ public class Utilities {
 		String result = slg.slugify(text + "-" + System.currentTimeMillis());
 		return result;
 		}
-
-		public static void main(String[] args) {
-		System.out.println(createSeoLink("Laptop HP 15s-fq1106TU 193Q2PA - intel core i3"));
+	public static String createSeoLinkCategory(final String text) {
+		Slugify slg = new Slugify();
+		String result = slg.slugify(text);
+		return result;
 		}
 
 }

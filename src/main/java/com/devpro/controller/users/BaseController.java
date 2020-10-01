@@ -15,6 +15,7 @@ import com.devpro.repositories.ContactRepo;
 import com.devpro.repositories.ProductRepo;
 import com.devpro.repositories.RoleRepo;
 import com.devpro.repositories.UserRepo;
+import com.devpro.services.ProductService;
 
 
 public abstract class BaseController {
@@ -24,9 +25,12 @@ public abstract class BaseController {
 		
 	@Autowired
 	ContactRepo contactRepo;
-		
+	
 	@Autowired
-	ProductRepo productRepo;   
+	ProductRepo productRepo;
+	
+	@Autowired
+	ProductService productService; 
 	
 	@Autowired
 	UserRepo userRepo;
@@ -47,7 +51,7 @@ public abstract class BaseController {
 	
 	@ModelAttribute("products")
 	public List<Product> getProducts() {
-		return productRepo.findAll();
+		return productService.findProductByStatus();
 	}						
 	
 	@ModelAttribute("users")

@@ -482,7 +482,7 @@
 
 .main>.bottom>.content>ul>div>li {
 	width: 200px;
-	height: 300px;
+	height: 320px;
 	margin-left: 20px;
 	margin-right: 20px;
 }
@@ -502,7 +502,22 @@
 }
 
 .main>.bottom>.content>ul>div>li:hover a img {
-	width: 180px;
+	width: 190px;
+}
+
+.main>.bottom>.content>ul li button {
+	width: 150px;
+	height: 30px;
+	margin-top: 10px;
+	background: #f63030;
+	border-radius: 20px;
+	border: 0px;
+	color: white;
+	display: none;
+}
+
+.main>.bottom>.content>ul li:hover button {
+	display: block;
 }
 
 .main>.bottom>.content>ul>div>li>span {

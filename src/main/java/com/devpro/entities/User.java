@@ -1,6 +1,8 @@
 package com.devpro.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 	@Column(name = "username", length = 45, nullable = false)
 	private String username;
 
@@ -23,6 +25,24 @@ public class User extends BaseEntity{
 
 	@Column(name = "email", length = 45, nullable = false)
 	private String email;
+
+	@Column(name = "first_name", length = 45, nullable = false)
+	private String firstName;
+
+	@Column(name = "name", length = 45, nullable = false)
+	private String name;
+
+	@Column(name = "phone", length = 45, nullable = false)
+	private String phone;
+
+	@Column(name = "address", length = 100, nullable = false)
+	private String address;
+
+	@Column(name = "gender", nullable = false)
+	private boolean gender;
+
+	@Column(name = "avatar", length = 100, nullable = false)
+	private String avatar;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "tbl_users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -59,6 +79,53 @@ public class User extends BaseEntity{
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
-	
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+
 }

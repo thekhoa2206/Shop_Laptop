@@ -1,29 +1,47 @@
 package com.devpro.entities;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_saleorder")
 public class SaleOrder extends BaseEntity {
-
-	@Column(name = "code", length = 45, nullable = false)
+	@Column(name = "code")
 	private String code;
-
-	@Column(name = "user_id", length = 45, nullable = false)
-	private String userId;
 
 	@Column(name = "total", precision = 13, scale = 2, nullable = false)
 	private BigDecimal total;
 
-	@Column(name = "customer_name", length = 500, nullable = true)
+	@Column(name = "customer_name")
 	private String customerName;
 
-	@Column(name = "customer_address", length = 500, nullable = true)
+	@Column(name = "customer_address")
 	private String customerAddress;
+
+	@Column(name = "seo")
+	private String seo;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "saleOrder"/* tên property category trong class product */
+			, fetch = FetchType.LAZY)
+	private List<SaleOrderProducts> saleOrderProducts = new ArrayList<SaleOrderProducts>();
+	
+	
+	public void addSaleOrderProducts(SaleOrderProducts _saleOrderProducts) {
+		_saleOrderProducts.setSaleOrder(this);
+		saleOrderProducts.add(_saleOrderProducts);
+	}
+	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id", referencedColumnName = "id")
+//	private User user;
 
 	public String getCode() {
 		return code;
@@ -31,14 +49,6 @@ public class SaleOrder extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public BigDecimal getTotal() {
@@ -64,5 +74,29 @@ public class SaleOrder extends BaseEntity {
 	public void setCustomerAddress(String customerAddress) {
 		this.customerAddress = customerAddress;
 	}
+
+	public String getSeo() {
+		return seo;
+	}
+
+	public void setSeo(String seo) {
+		this.seo = seo;
+	}
+
+	public List<SaleOrderProducts> getSaleOrderProducts() {
+		return saleOrderProducts;
+	}
+
+	public void setSaleOrderProducts(List<SaleOrderProducts> saleOrderProducts) {
+		this.saleOrderProducts = saleOrderProducts;
+	}
+
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 }

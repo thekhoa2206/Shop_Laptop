@@ -47,51 +47,31 @@
 			<div class="content-right">
 				<div class="create-product">
 					<div class="title">
-						<span>Tạo Sản Phẩm Mới</span>
+						<span>Tạo category</span>
 					</div>
 					<div class="content-create-product">
-						<form:form method="post" action="/admin/save-product"
-							modelAttribute="product" enctype="multipart/form-data">
+						<form:form method="post" action="/admin/save-category"
+							modelAttribute="category" enctype="multipart/form-data">
 
 							<form:hidden path="id" />
 
-							<label>Tên sản phẩm</label>
-							<br>
-							<form:input type="text" path="title" />
-							<br>
-							<label>Giá sản phẩm</label>
-							<br>
-							<form:input type="text" path="price" />
-							<br>
-							<label>Mô tả sản phẩm(tối 3000 chữ)</label>
-							<br>
-							<form:textarea id="txtshortDescription1" path="shortDes" />
-							<br>
-							<br>
-							<label>Mô tả chi tiết</label>
-							<br>
-							<div style="width: 500px; margin-left: 250px;">
-								<form:textarea id="txtDetailDescription" path="shortDetails" />
+							<div class="form-group" style="width: 970px; margin-left: 15px;">
+								<label for="inputAddress">Tên Category</label>
+								<form:input type="text" class="form-control" path="name"
+									placeholder="Nhập tên category" />
 							</div>
-							<div class="form-group">
-								<label>Category</label><br>
-								<form:select path="category.id"
-									style="width: 500px; height: 40px; margin-left: 250px;	border-radius: 5px; border: 1px solid #dcdbdb;">
-									<form:options items="${categories}" itemValue="id"
-										itemLabel="name" style="height: 40px;" />
-								</form:select>
+							<div class="form-group" style="width: 970px; margin-left: 15px;">
+								<label for="inputAddress">Description</label>
+								<form:input type="text" class="form-control" path="description"
+									placeholder="Mô tả chi tiết về category" />
 							</div>
-							<br>
-							<label>Ảnh của sản phẩm</label>
-							<input type="file" name="images" multiple="multiple"
-								style="border: 0px solid #dcdbdb;">
 							<br>
 							<label>Status</label>
 							<form:checkbox path="status" style="margin:0px; width:15px; height:15px; margin-left:20px;"/>
 							<br><br><br>
-							<button type="submit" value="Lưu Sản Phẩm" class="btn btn-primary btn-sm"
+							<button type="submit" value="Lưu" class="btn btn-primary btn-sm"
 								style="width:200px; line-height: 28px; margin-left: 260px; margin-bottom:50px;">Lưu</button>
-							<a href="${base }/admin/list-product"
+							<a href="${base }/admin/list-category"
 							class="btn btn-primary btn-sm" style="width:200px; line-height: 28px; margin-left:20px;margin-bottom:50px;">Quay lại</a>
 						</form:form>
 					</div>
@@ -101,10 +81,5 @@
 		</div>
 		<!-- /content -->
 	</div>
-	<script>
-		$(document).ready(function() {
-			$('#txtDetailDescription').summernote();
-		});
-	</script>
 </body>
 </html>
