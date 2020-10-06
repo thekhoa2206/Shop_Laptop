@@ -9,8 +9,6 @@ function confirmDelete(seo) {
 var Product = {
 	deleteProduct : function(seo) {
 		var data = {};
-		// alert(seo);
-		data["seo"] = seo;
 		$.ajax({
 			url : "/admin/list-product/delete-product-with-ajax/" + seo,
 			type : "post",
@@ -26,7 +24,7 @@ var Product = {
 				// alert(jsonResult.message);
 				// $("#message").html(jsonResult.data);
 				// $('#blogModal').modal('show');
-				if (jsonResult.status == 401) {
+				if (jsonResult.status == 200) {
 					alert('Xóa thành công');
 					location.reload(true);
 				} else {

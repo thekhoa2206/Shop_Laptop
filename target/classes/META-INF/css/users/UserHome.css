@@ -269,8 +269,8 @@
 	width: 2952px;
 	height: 310px;
 	display: flex;
-}
 
+}
 .main>.middle>.top>.content .slide-flash {
 	
 }
@@ -473,7 +473,7 @@
 	margin-top: 10px;
 	display: flex;
 	flex-wrap: wrap;
-	overflow: auto;
+	overflow: hidden;
 }
 
 .main>.bottom>.content>ul>div {

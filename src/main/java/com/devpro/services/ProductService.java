@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.devpro.common.ProductSearch;
 import com.devpro.common.Utilities;
 import com.devpro.entities.Cart;
 import com.devpro.entities.CartItem;
@@ -31,32 +32,58 @@ public class ProductService {
 	ProductRepo productRepo;
 	@PersistenceContext
 	protected EntityManager entityManager;
-	@Autowired SaleOrderRepo saleOrderRepo;
+	@Autowired
+	SaleOrderRepo saleOrderRepo;
 	
 	@SuppressWarnings("unchecked")
-	public List<Product> findProductByCategory(final String seo) {
-
-		String jpql = "Select p from Product p where p.category.seo = '" + seo + "'";
+	public List<Product> search(final ProductSearch productSearch){
+		String jpql = "Select p from Product p where 1=1";
+		if(productSearch.getSeoCategory() != null && !productSearch.getSeoCategory().isEmpty()){
+			jpql += " and p.category.seo= '" +productSearch.getSeoCategory() +"'";
+		
+		}
+		if(productSearch.getSeoProduct() != null && !productSearch.getSeoProduct().isEmpty()){
+			jpql += " and p.seo= '" +productSearch.getSeoProduct() +"'";
+		}
 		Query query = entityManager.createQuery(jpql, Product.class);
-
-//		String sql = "select * from tbl_products where category_id = (select id from tbl_category where seo='" + seo
-//				+ "')";
-//		Query query = entityManager.createNativeQuery(sql, Product.class);
+		
+		if(productSearch.getCurrentPage() != null && productSearch.getCurrentPage() > 0) {         // phân trang
+			query.setFirstResult((productSearch.getCurrentPage()-1) * ProductSearch.SIZE_ITEMS_ON_PAGE);
+			query.setMaxResults(ProductSearch.SIZE_ITEMS_ON_PAGE);
+		}
 		return query.getResultList();
 	}
-
-	public Product findProductBySeo(final String seo) {
-
-//		String jpql = "Select p from Product p where p.seo = '" + seo + "'";
+	
+//	@SuppressWarnings("unchecked")
+//	public List<Product> findProductByCategory(final String seo) {
+//
+//		String jpql = "Select p from Product p where p.category.seo = '" + seo + "'";
 //		Query query = entityManager.createQuery(jpql, Product.class);
-
-		String sql = "select * from tbl_products where seo = '" + seo + "'";
-		Query query = entityManager.createNativeQuery(sql, Product.class);
-		return (Product) query.getSingleResult();
-	}
+//
+////		String sql = "select * from tbl_products where category_id = (select id from tbl_category where seo='" + seo
+////				+ "')";
+////		Query query = entityManager.createNativeQuery(sql, Product.class);
+//		return query.getResultList();
+//	}
+//
+//	public Product findProductBySeo(final String seo) {
+//
+////		String jpql = "Select p from Product p where p.seo = '" + seo + "'";
+////		Query query = entityManager.createQuery(jpql, Product.class);
+//
+//		String sql = "select * from tbl_products where seo = '" + seo + "'";
+//		Query query = entityManager.createNativeQuery(sql, Product.class);
+//		return (Product) query.getSingleResult();
+//	}
 	public List<Product> findProductByStatus() {
 
 		String sql = "select * from tbl_products where status = '1'";
+		Query query = entityManager.createNativeQuery(sql, Product.class);
+		return query.getResultList();
+	}
+	public List<Product> findProductById(int id) {
+
+		String sql = "select * from tbl_products where id = '" +id +"'";
 		Query query = entityManager.createNativeQuery(sql, Product.class);
 		return query.getResultList();
 	}
@@ -109,28 +136,6 @@ public class ProductService {
 			throw e;
 		}
 	}
-	@Transactional(rollbackOn = Exception.class)
-	public void saveOrderProduct(String customerAddress, String customerEmail, HttpSession httpSession) throws Exception {
-		SaleOrder saleOrder = new SaleOrder();
-		saleOrder.setCode("ORDER-"+System.currentTimeMillis());
-		saleOrder.setSeo("ORDER-"+System.currentTimeMillis());
-		saleOrder.setCustomerName(customerEmail);
-		saleOrder.setCustomerAddress(customerAddress);
-		
-		Cart cart = (Cart) httpSession.getAttribute("GIO_HANG");
-		List<CartItem> cartItems = cart.getCartItems();
-		BigDecimal sum = new BigDecimal(0);
-		for(CartItem item : cartItems) {
-			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
-			saleOrderProducts.setProduct(productRepo.getOne(item.getProductId()));
-			saleOrderProducts.setQuantity(item.getQuantity());
-			saleOrder.addSaleOrderProducts(saleOrderProducts);
-			sum = sum.add(saleOrderProducts.getProduct().getPrice());
-		}
-		saleOrder.setTotal(sum);
-		saleOrderRepo.save(saleOrder);
-		httpSession.setAttribute("SL_SP_GIO_HANG", 0);
-		httpSession.setAttribute("GIO_HANG", null);
-	}
+
 
 }

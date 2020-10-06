@@ -42,6 +42,16 @@ public class UserService {
 			return true;
 		return false;
 	}
+	public User loadUserByUsername(String userName) {
+		try {
+			String jpql = "From User u Where u.username='" + userName +"'";
+			Query query = entityManager.createQuery(jpql, User.class);
+			return (User) query.getResultList().get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@Transactional(rollbackOn = Exception.class)
 	public void saveUser(MultipartFile[] images, User user) throws Exception {

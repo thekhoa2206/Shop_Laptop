@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.devpro.common.ProductSearch;
 import com.devpro.repositories.CategoryRepo;
 import com.devpro.services.ProductService;
 
@@ -22,8 +23,11 @@ public class DetailController extends BaseController {
 	@RequestMapping(value = { "/detail-product/{seo}" }, method = RequestMethod.GET)
 	public String detailProduct(@PathVariable("seo") String seo, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
+		ProductSearch productSearch = new ProductSearch();
+		productSearch.setSeoProduct(seo);
+		
 		model.addAttribute("categories", categoryRepo.findAll());
-		model.addAttribute("product", productService.findProductBySeo(seo));
+		model.addAttribute("product", productService.search(productSearch).get(0));
 		return "users/UserDetail";
 	}
 }

@@ -28,9 +28,6 @@
 	href="${base}/css/users/UserHome.css">
 <link rel="stylesheet" type="text/css"
 	href="${base}/css/users/responsive.css">
-<script type="text/javascript" src="${base}/js/users/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="${base}/js/users/script.js"></script>
-<script type="text/javascript" src="${base}/js/users/shop.js"></script>
 </head>
 <body>
 	<!-- wrapper -->
@@ -246,7 +243,9 @@
 											</c:otherwise>
 										</c:choose> <span>${product.title }</span></a><br> <br> <span>&nbsp;&nbsp;&nbsp;${product.priceVN }&nbsp;&nbsp;&nbsp;
 								</span>
-									<button type="button" onclick="Shop.addItemToCart(${product.id}, 1)" >Thêm vào giỏ</button></li>
+									<button type="button"
+										onclick="Shop.addItemToCart(${product.id}, 1)">Thêm
+										vào giỏ</button></li>
 							</div>
 						</c:forEach>
 
@@ -254,30 +253,41 @@
 					</ul>
 					<div class="pagination">
 						<ul>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
+							<li><a class="page-link" href="#" id="previous"
+								onclick="Shop.homePrevious('${base}/')"><<</a></li>
+							<c:forEach var="numberOPs" items="${numberOP }">
+								<li><a href="#"
+									onclick="Shop.homePage('${base}/', '${numberOPs }')">${numberOPs }</a></li>
+							</c:forEach>
+							<li><a class="page-link" href="#" id="next"
+								onclick="Shop.homeNext('${base}/','${numberOfPage }')">>></a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<!-- /bottom -->
 
-			<div class="mess" style="margin-right:130px;cursor: pointer;">
+			<div class="mess" style="margin-right: 130px; cursor: pointer;">
 				<div class="icon">
-					<button id="messenger" style="margin-left:100px;cursor: pointer;">
+					<button id="messenger" style="margin-left: 100px; cursor: pointer;">
 						<img src="${base}/images/users/mess.jpg">
 					</button>
 				</div>
 				<div class="box-chat" id="chats"
-					style="width: 220px; height: 305px; background: #ef8a47; border-radius:5px 5px 0px 0px;border: 1px solid #d5d5d5; display:none;">
-					<div class="title" style="width: 220px; line-height: 30px;"><span style="margin-left:60px;">Nhân viên tư vấn</span><span style="margin-left:45px;cursor: pointer;font-size:15;" id="close">&nbsp;&nbsp;-&nbsp;&nbsp;</span></div>
-					<div class="view-chat" style="background: white; width: 220px; height: 240px;"></div>
-					<div class="chat"style="background:white; border-top: 1px solid #d5d5d5;" >
-						<input type="text" style="width:180px; height:30px; border-radius:5px; border:0px;">
-						<input type="submit" value=">"style="width:35px; height:30px; margin-top:4px; border:0px;">
+					style="width: 220px; height: 305px; background: #ef8a47; border-radius: 5px 5px 0px 0px; border: 1px solid #d5d5d5; display: none;">
+					<div class="title" style="width: 220px; line-height: 30px;">
+						<span style="margin-left: 60px;">Nhân viên tư vấn</span><span
+							style="margin-left: 45px; cursor: pointer; font-size: 15;"
+							id="close">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+					</div>
+					<div class="view-chat"
+						style="background: white; width: 220px; height: 240px;"></div>
+					<div class="chat"
+						style="background: white; border-top: 1px solid #d5d5d5;">
+						<input type="text"
+							style="width: 180px; height: 30px; border-radius: 5px; border: 0px;">
+						<input type="submit" value=">"
+							style="width: 35px; height: 30px; margin-top: 4px; border: 0px;">
 					</div>
 				</div>
 			</div>
@@ -290,6 +300,11 @@
 		<!-- /footer -->
 	</div>
 	<!-- /wrapper -->
+
+	<!-- js -->
+	<script type="text/javascript" src="${base}/js/users/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="${base}/js/users/script.js"></script>
+	<script type="text/javascript" src="${base}/js/users/shop.js"></script>
 	<script>
 	$(document).ready(function(){
 		$("#messenger").click(function(){

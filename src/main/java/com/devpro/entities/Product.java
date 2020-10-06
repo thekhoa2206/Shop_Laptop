@@ -119,18 +119,18 @@ public class Product extends BaseEntity {
 	public void setProductImages(List<ProductImages> productImages) {
 		this.productImages = productImages;
 	}
-
+	
+	@Transient
 	public String getPriceVN() {
 		Locale locale = new Locale("vi", "VN");
 		NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-		priceVN = fmt.format(price);
-		return priceVN;
+		return fmt.format(price);
 	}
-
+	
+	@Transient
 	public void setPriceVN(String priceVN) {
 		this.priceVN = priceVN;
 	}
 
-	
 
 }

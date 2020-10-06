@@ -10,7 +10,7 @@
 			var n = 1;
 			setInterval(function(){
 				$("#slide-img").fadeOut(function(){
-					$("#slide-img").attr("src",slide[n]);
+					$("#slide-img").attr("src", slide[n]);
 					$("#slide-img").fadeIn();
 					n++;
 			if(n >= slide.length)

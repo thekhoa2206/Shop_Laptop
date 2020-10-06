@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.devpro.entities.AjaxResponse;
 import com.devpro.entities.Cart;
@@ -22,9 +25,11 @@ import com.devpro.entities.CartItem;
 import com.devpro.entities.Product;
 import com.devpro.entities.SaleOrder;
 import com.devpro.entities.SaleOrderProducts;
+import com.devpro.entities.User;
 import com.devpro.repositories.ProductRepo;
 import com.devpro.repositories.SaleOrderRepo;
 import com.devpro.services.ProductService;
+import com.devpro.services.SaleOrderService;
 
 @Controller
 public class CartController extends BaseController {
@@ -35,33 +40,35 @@ public class CartController extends BaseController {
 	SaleOrderRepo saleOrderRepo;
 	@Autowired
 	ProductService productService;
+	@Autowired
+	SaleOrderService saleOrderService;
 
 	@RequestMapping(value = { "/cart/finish" }, method = RequestMethod.POST)
 	public String finish(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
-		String customerEmail = request.getParameter("customerEmail");
-		String customerAddress = request.getParameter("customerAddress");
-
 		HttpSession httpSession = request.getSession();
-		productService.saveOrderProduct(customerAddress, customerEmail, httpSession);
-
-		return "users/finish";
-	}
-
-	@RequestMapping(value = { "/cart/check-order" }, method = RequestMethod.POST)
-	public String check(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
-			throws Exception {
-		String customerEmail = request.getParameter("customerEmail");
+		String customerName = request.getParameter("customerName");
 		String customerAddress = request.getParameter("customerAddress");
-		System.out.println("customerEmail: " + customerEmail);
-		model.addAttribute("customerEmail", request.getParameter("customerEmail"));
-		model.addAttribute("customerAddress", request.getParameter("customerAddress"));
+		String customerPhone = null;
 		
-		HttpSession httpSession = request.getSession();
+		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+				customerPhone = ((User)principal).getPhone();
+			}
+		} else {
+			customerPhone = request.getParameter("customerPhone");
+		}
+		model.addAttribute("customerName", request.getParameter("customerName"));
+		model.addAttribute("customerAddress", request.getParameter("customerAddress"));
+		model.addAttribute("customerPhone", request.getParameter("customerPhone"));
+		
 		SaleOrder saleOrder = new SaleOrder();
 		Cart cart = (Cart) httpSession.getAttribute("GIO_HANG");
 		List<CartItem> cartItems = cart.getCartItems();
+		
 		BigDecimal sum = new BigDecimal(0);
+		
 		for(CartItem item : cartItems) {
 			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
 			saleOrderProducts.setProduct(productRepo.getOne(item.getProductId()));
@@ -69,10 +76,12 @@ public class CartController extends BaseController {
 			saleOrder.addSaleOrderProducts(saleOrderProducts);
 			sum = sum.add(saleOrderProducts.getProduct().getPrice());
 		}
+		model.addAttribute("cartItems", cartItems );
 		model.addAttribute("sum1", sum);
-		
-		return "users/check-order";
+		saleOrderService.saveOrderProduct(customerAddress, customerName,customerPhone, httpSession);
+		return "users/finish";
 	}
+
 
 	@RequestMapping(value = { "/cart/check-out" }, method = RequestMethod.GET)
 	public String index(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)

@@ -1,16 +1,16 @@
-function confirmDelete(seo) {
-	var del = confirm("Bạn có muốn xóa sản phẩm này không?");
+function confirmDelete(id) {
+	var del = confirm("Bạn đã hoàn thành đơn hàng này?");
 	if (del == true) {
-		Product.deleteProduct(seo);
+		SaleOrder.deleteSaleOrder(id);
 	} else {
 
 	}
 }
-var Product = {
-	deleteProduct : function(seo) {
+var SaleOrder = {
+	deleteSaleOrder : function(id) {
 		var data = {};
 		$.ajax({
-			url : "/admin/list-product/delete-product-with-ajax/" + seo,
+			url : "/admin/list-order/delete-saleOrder-with-ajax/" + id,
 			type : "post",
 			contentType : "application/json", // dữ liệu gửi lên web-service
 			// có dạng là json.
@@ -19,13 +19,9 @@ var Product = {
 			dataType : "json", // dữ liệu từ web-service trả về là json.
 			success : function(jsonResult) { // được gọi khi web-service trả
 				// về dữ liệu.
-				// alert(jsonResult.data.seo);
-				// alert(jsonResult.data.status);
-				// alert(jsonResult.message);
-				// $("#message").html(jsonResult.data);
-				// $('#blogModal').modal('show');
+
 				if (jsonResult.status == 200) {
-					alert('Xóa thành công');
+					alert('thành công');
 					location.reload(true);
 				} else {
 					alert('Lỗi');

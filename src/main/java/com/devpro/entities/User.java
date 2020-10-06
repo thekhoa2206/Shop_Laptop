@@ -2,6 +2,7 @@ package com.devpro.entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "tbl_users")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails{
+	private static final long serialVersionUID = -1956195527415323516L;
+
 	@Column(name = "username", length = 45, nullable = false)
 	private String username;
 
@@ -126,6 +132,30 @@ public class User extends BaseEntity {
 
 	public void setGender(boolean gender) {
 		this.gender = gender;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 }

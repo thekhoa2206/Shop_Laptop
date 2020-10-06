@@ -1,3 +1,4 @@
+<%@page import="com.devpro.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,7 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<!-- spring taglibs -->
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <c:url value="${pageContext.request.contextPath}" var="base" />
 
 <link rel="stylesheet" type="text/css"
@@ -19,7 +22,20 @@
 				<img src="${base}/images/admin/avt.jpg">
 			</div>
 			<div>
-				<span>&nbsp;wellcome,&nbsp;&nbsp;</span> <a href="#">Admin</a>
+				<span>&nbsp;wellcome,&nbsp;&nbsp;</span><sec:authorize access="isAuthenticated()">
+				
+					<%
+						String username = "";
+					Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication()
+							.getPrincipal();
+					if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+						username = ((User) principal).getName();
+					}
+					%> <a class="nav-link" href="${base}/#">
+						<%=username%>
+				</a>
+
+			</sec:authorize>
 			</div>
 		</li>
 		<li class="menu-1">
@@ -97,7 +113,7 @@
 								<path fill-rule="evenodd"
 							d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 								</svg></li>
-				<li><a href="/admin/list-product">Quản lý đơn hàng</a></li>
+				<li><a href="${base }/admin/list-order">Quản lý đơn hàng</a></li>
 			</ul>
 		</li>
 		<li class="menu-1">
@@ -133,7 +149,9 @@
 								<path fill-rule="evenodd"
 							d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
 								</svg></li>
-				<li><a href="#">Đăng xuất</a></li>
+				<sec:authorize access="isAuthenticated()">
+					<li><a href="${base}/logout">Đăng Xuất</a></li>
+				</sec:authorize>
 			</ul>
 		</li>
 	</ul>

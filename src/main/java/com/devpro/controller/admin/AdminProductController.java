@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.devpro.common.ProductSearch;
 import com.devpro.entities.AjaxResponse;
 import com.devpro.entities.Contact;
 import com.devpro.entities.Product;
@@ -54,7 +55,9 @@ public class AdminProductController {
 	public String editProduct(@PathVariable("seo") String seo, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
 		model.addAttribute("categories", categoryRepo.findAll());
-		model.addAttribute("product", productService.findProductBySeo(seo));
+		ProductSearch productSearch = new ProductSearch();
+		productSearch.setSeoProduct(seo);
+		model.addAttribute("product", productService.search(productSearch).get(0));
 		return "admin/product/add-product";
 	}
 
@@ -71,8 +74,7 @@ public class AdminProductController {
 	}
 
 	@RequestMapping(value = { "/admin/list-product/delete-product-with-ajax/{seo}" }, method = RequestMethod.POST)
-	public ResponseEntity<AjaxResponse> subscribe(@ModelAttribute("product") Product product, @RequestBody Product data,
-			@PathVariable("seo") String seo, final ModelMap model, final HttpServletRequest request,
+	public ResponseEntity<AjaxResponse> subscribe(@PathVariable("seo") String seo, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
 
 //		model.addAttribute("categories", categoryRepo.findAll());
@@ -80,17 +82,17 @@ public class AdminProductController {
 
 //			String status = String.valueOf(data.getStatus());
 //			System.out.println("Status: " + status);
-
-		Product products = productService.findProductBySeo(seo);
+		ProductSearch productSearch = new ProductSearch();
+		productSearch.setSeoProduct(seo);
+		Product products = productService.search(productSearch).get(0);
 
 //				System.out.println("ID:  "+products.getId());
 //				System.out.println("title :  "+products.getTitle());
-//				System.out.println("price:  "+products.getPrice());
-//				System.out.println("Seo Pr:  "+products.getSeo());
-//				System.out.println("Status:  "+products.getStatus());
+
+		products.setPriceVN(products.getPriceVN());
 		products.setStatus(false);
 		productRepo.save(products);
 
-		return ResponseEntity.ok(new AjaxResponse(401, data));
+		return ResponseEntity.ok(new AjaxResponse(200, "SUCCESS"));
 	}
 }

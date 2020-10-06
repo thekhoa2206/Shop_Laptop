@@ -11,12 +11,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table(name = "tbl_roles")
-public class Role extends BaseEntity{
-	@Column(name = "name", length = 50, nullable = false)
+public class Role extends BaseEntity implements GrantedAuthority{
+	private static final long serialVersionUID = -1246332751520787944L;
+	
+	@Column(name = "name", length = 45, nullable = false)
 	private String name;
-	@Column(name = "description", length = 50, nullable = false)
+	@Column(name = "description", length = 45, nullable = false)
 	private String description;
 	
 
@@ -34,6 +38,11 @@ public class Role extends BaseEntity{
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 	
 	
