@@ -2,7 +2,9 @@ package com.devpro.controller.users;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,43 +44,62 @@ public class CartController extends BaseController {
 	ProductService productService;
 	@Autowired
 	SaleOrderService saleOrderService;
-
+	
 	@RequestMapping(value = { "/cart/finish" }, method = RequestMethod.POST)
 	public String finish(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
 		HttpSession httpSession = request.getSession();
-		String customerName = request.getParameter("customerName");
-		String customerAddress = request.getParameter("customerAddress");
+		String customerName = null;
+		String customerAddress = null;
 		String customerPhone = null;
+		String customerEmail = null;
 		
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
 				customerPhone = ((User)principal).getPhone();
+				customerName = ((User)principal).getName();
+				customerAddress = ((User)principal).getAddress();
+				customerEmail = ((User)principal).getEmail();
+				
+				model.addAttribute("customerName", ((User)principal).getName());
+				model.addAttribute("customerAddress", ((User)principal).getAddress());
+				model.addAttribute("customerPhone", ((User)principal).getPhone());
+				model.addAttribute("customerEmail", ((User)principal).getEmail());
 			}
 		} else {
 			customerPhone = request.getParameter("customerPhone");
+			customerAddress = request.getParameter("customerAddress");
+			customerName = request.getParameter("customerName");
+			customerEmail = request.getParameter("customerEmail");
+			
+			model.addAttribute("customerName", request.getParameter("customerName"));
+			model.addAttribute("customerAddress", request.getParameter("customerAddress"));
+			model.addAttribute("customerPhone", request.getParameter("customerPhone"));
+			model.addAttribute("customerEmail", request.getParameter("customerEmail"));
 		}
-		model.addAttribute("customerName", request.getParameter("customerName"));
-		model.addAttribute("customerAddress", request.getParameter("customerAddress"));
-		model.addAttribute("customerPhone", request.getParameter("customerPhone"));
 		
 		SaleOrder saleOrder = new SaleOrder();
 		Cart cart = (Cart) httpSession.getAttribute("GIO_HANG");
 		List<CartItem> cartItems = cart.getCartItems();
 		
 		BigDecimal sum = new BigDecimal(0);
-		
+		String sumVN =null;
 		for(CartItem item : cartItems) {
 			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
 			saleOrderProducts.setProduct(productRepo.getOne(item.getProductId()));
 			saleOrderProducts.setQuantity(item.getQuantity());
 			saleOrder.addSaleOrderProducts(saleOrderProducts);
+			for (int i = 1; i <= item.getQuantity(); i++) {
 			sum = sum.add(saleOrderProducts.getProduct().getPrice());
+			}
+			Locale locale = new Locale("vi", "VN");
+			NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+			 sumVN =fmt.format(sum);
 		}
 		model.addAttribute("cartItems", cartItems );
-		model.addAttribute("sum1", sum);
-		saleOrderService.saveOrderProduct(customerAddress, customerName,customerPhone, httpSession);
+		model.addAttribute("sumVN", sumVN);
+		saleOrderService.saveOrderProduct(customerAddress, customerName,customerPhone,customerEmail, httpSession);
 		return "users/finish";
 	}
 
@@ -116,7 +137,6 @@ public class CartController extends BaseController {
 			Product product = productRepo.getOne(data.getProductId());
 			data.setProductName(product.getTitle());
 			data.setUnitPrice(product.getPrice());
-
 			cart.getCartItems().add(data);
 		}
 

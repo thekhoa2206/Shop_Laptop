@@ -18,8 +18,8 @@ var Shop = {
 	homePrevious : function(baseUrl) {
 		var currentPage = parseInt(Shop.getUrlParameter("page"));
 		if(currentPage== null){
-			currentPage ==0
-		
+			window.location = baseUrl + "?page=" + 1;
+		}else{
 		if(currentPage > 1){
 			window.location = baseUrl + "?page=" + (currentPage - 1);
 		}else{
@@ -29,7 +29,7 @@ var Shop = {
 	},
 	homeNext : function(baseUrl, numberOfPage) {
 		var currentPage = parseInt(Shop.getUrlParameter("page"));
-		if(currentPage== 0 ||currentPage.isEmpty()){
+		if(currentPage== null){
 			window.location = baseUrl + "?page=" + 1;
 		}else{
 		if(currentPage < numberOfPage){
@@ -56,7 +56,7 @@ var Shop = {
 												// về dữ liệu.
 				alert('thanh cong');
 
-				$("#btnCheckout").html("Giỏ hàng(" + jsonResult.data + ")");
+				$("#btnCheckout").html("Giỏ Hàng(" + jsonResult.data + ")");
 
 				$('html, body').animate({
 					scrollTop : $("#btnCheckout").offset().top - 100

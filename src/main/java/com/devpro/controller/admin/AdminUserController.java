@@ -1,5 +1,8 @@
 package com.devpro.controller.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,7 +36,6 @@ public class AdminUserController {
 	public RoleRepo roleRepo;
 	@Autowired
 	UserService userService;
-
 	@RequestMapping(value = { "/admin/list-user" }, method = RequestMethod.GET)
 	public String listUser(final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
@@ -50,9 +52,11 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = { "/admin/edit-user/{id}" }, method = RequestMethod.GET)
-	public String editUser(@PathVariable("id") int id, final ModelMap model, final HttpServletRequest request,
+	public String editUser(@PathVariable("id") int id,@ModelAttribute("user") User user, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
+		
 		model.addAttribute("role", roleRepo.findAll());
+
 		model.addAttribute("user", userService.findUserById(id));
 		return "admin/user/add-user";
 	}
@@ -66,7 +70,7 @@ public class AdminUserController {
 		return "redirect:/admin/list-user";
 	}
 	@RequestMapping(value = { "/admin/list-user/delete-user-with-ajax/{id}" }, method = RequestMethod.POST)
-	public ResponseEntity<AjaxResponse> subscribe(@ModelAttribute("user") User user, @RequestBody User data,
+	public ResponseEntity<AjaxResponse> subscribe(@ModelAttribute("user") User user,
 			@PathVariable("id") int id, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
 
@@ -81,6 +85,6 @@ public class AdminUserController {
 		users.setStatus(false);
 		userRepo.save(users);
 
-		return ResponseEntity.ok(new AjaxResponse(401, data));
+		return ResponseEntity.ok(new AjaxResponse(200, "Success"));
 	}
 }

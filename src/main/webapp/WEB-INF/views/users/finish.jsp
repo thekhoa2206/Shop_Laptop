@@ -67,7 +67,7 @@
 										<tr>
 											<th scope="row">1</th>
 											<td>${item.productName }</td>
-											<td>${item.unitPrice }</td>
+											<td>${item.unitPriceVN }</td>
 											<td>${item.quantity }</td>
 										</tr>
 
@@ -78,7 +78,7 @@
 									<tr>
 										<td>Tổng:</td>
 										<td></td>
-										<td>${sum1 }</td>
+										<td>${sumVN }</td>
 									</tr>
 
 								</tbody>
@@ -91,6 +91,7 @@
 							<tr>
 								<th scope="col">Họ và tên</th>
 								<th scope="col">Số điện thoại</th>
+								<th scope="col">Email</th>
 								<th scope="col">Địa chỉ</th>
 							</tr>
 
@@ -99,12 +100,14 @@
 							<tr>
 								<td>${customerName }</td>
 								<td>${customerPhone }</td>
+								<td>${customerEmail }</td>
 								<td>${customerAddress }</td>
 							</tr>
 
-
 						</tbody>
 					</table>
+					<a href="${base }/home"
+							class="btn btn-primary btn-sm" style="width:200px; line-height: 28px; margin-left:20px;margin-bottom:50px;">Xác nhận</a>
 				</div>
 				<!-- /.col-lg-9 -->
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,7 +23,9 @@ import com.devpro.entities.Product;
 import com.devpro.entities.ProductImages;
 import com.devpro.entities.SaleOrder;
 import com.devpro.entities.SaleOrderProducts;
+import com.devpro.entities.User;
 import com.devpro.repositories.ProductRepo;
+import com.devpro.repositories.SaleOrderProductsRepo;
 import com.devpro.repositories.SaleOrderRepo;
 
 @Service
@@ -34,6 +37,7 @@ public class ProductService {
 	protected EntityManager entityManager;
 	@Autowired
 	SaleOrderRepo saleOrderRepo;
+
 	
 	@SuppressWarnings("unchecked")
 	public List<Product> search(final ProductSearch productSearch){
@@ -87,7 +91,6 @@ public class ProductService {
 		Query query = entityManager.createNativeQuery(sql, Product.class);
 		return query.getResultList();
 	}
-
 	private boolean isEmptyUploadFile(MultipartFile[] images) {
 		if (images == null || images.length <= 0)
 			return true;

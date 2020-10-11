@@ -9,8 +9,6 @@ function confirmDelete(id) {
 var User = {
 		deleteUser : function(id) {
 		var data = {};
-		// alert(id);
-		data["id"] = id;
 		$.ajax({
 			url : "/admin/list-user/delete-user-with-ajax/" + id,
 			type : "post",
@@ -27,7 +25,7 @@ var User = {
 				// alert(jsonResult.message);
 				// $("#message").html(jsonResult.data);
 				// $('#blogModal').modal('show');
-				if (jsonResult.status == 401) {
+				if (jsonResult.status == 200) {
 					alert('Xóa thành công');
 					location.reload(true);
 				} else {

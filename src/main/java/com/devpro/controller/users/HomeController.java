@@ -14,12 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.devpro.common.ProductSearch;
-import com.devpro.entities.Category;
-import com.devpro.entities.Contact;
 import com.devpro.entities.Product;
-import com.devpro.repositories.CategoryRepo;
-import com.devpro.repositories.ContactRepo;
-import com.devpro.repositories.ProductRepo;
 import com.devpro.services.ProductService;
 
 

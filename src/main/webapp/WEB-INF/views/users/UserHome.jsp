@@ -78,33 +78,7 @@
 				<!-- menu -->
 				<jsp:include page="/WEB-INF/views/users/common/menu.jsp"></jsp:include>
 				<!-- /menu -->
-				<div class="filter">
-					<div class="title">Tìm Kiếm Sản Phẩm</div>
-					<div class="content">
-						<select>
-							<option>Hãng Sản Xuất</option>
-							<option>Dell</option>
-							<option>HP</option>
-							<option>Asus</option>
-							<option>MSI</option>
-							<option>LG</option>
-							<option>Lenovo</option>
-							<option>Apple</option>
-						</select><br> <select>
-							<option>Khoảng giá</option>
-							<option>Dưới 5.000.000</option>
-							<option>5.000.000 - 7.000.000</option>
-							<option>7.000.000 - 10.000.000</option>
-							<option>10.000.000 - 15.000.000</option>
-							<option>Lớn hơn 15.000.000</option>
-						</select><br>
-						<form>
-							<input type="radio" name="kind">Tăng dần<br> <input
-								type="radio" name="kind">Giảm dần<br>
-						</form>
-						<a href="#"><button>Tìm Kiếm</button></a>
-					</div>
-				</div>
+
 				<div class="support">
 					<div class="title">Hỗ Trợ Online</div>
 					<div class="content">
@@ -193,32 +167,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="bottom">
-					<div class="title">
-						<div class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAPTOP
-							BÁN CHẠY</div>
-						<div class="right"></div>
-					</div>
-					<div class="content">
-						<ul>
-							<li><a href="#"> <img
-									src="${base}/images/users/laptop-1.jpg"> <span>HP
-										ENVY X360-AR0071AU/R5-3500U/8GB/256GB SSD/WIN10</span>
-							</a> <span>&nbsp;&nbsp;&nbsp;22.090.000đ&nbsp;&nbsp;&nbsp;</span> <del>22.890.000đ</del></li>
-							<li><a href="${base}/detail"> <img
-									src="${base}/images/users/laptop-2.jpg"> <span>Asus
-										Zenbook Dou UX481FL-BM048T i5 1021U/8GB/512GB SSD/MX250
-										2GB/WIN10</span>
-							</a> <span>&nbsp;&nbsp;&nbsp;30.990.000đ&nbsp;&nbsp;&nbsp;</span></li>
-							<li><a href="#"> <img
-									src="${base}/images/users/laptop-3.jpg"> <span>Macbook
-										Air 13 128GB MQD32SA/A (2017)</span>
-							</a> <span>&nbsp;&nbsp;&nbsp;19.490.000đ&nbsp;&nbsp;&nbsp;</span> <del>19.990.000đ</del></li>
-						</ul>
-						<a href="#">Xem tất cả</a>
-					</div>
-				</div>
-			</div>
+		   </div>
 			<!-- /middle -->
 			<!-- bottom -->
 			<div class="bottom">

@@ -9,7 +9,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- spring taglibs -->
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,33 +48,84 @@
 					<div class="col-lg-12 col-md-12 mb-12">
 						<form action="${base }/cart/finish" method="post">
 							<div class="form-group">
-								<label for="exampleInputEmail1">Họ và tên</label> <input
-									type="text" class="form-control" name="customerName"
-									id="exampleInputEmail1" aria-describedby="emailHelp"
-									placeholder="Nhập họ và tên của bạn">
-							</div>
-							<div class="form-group">
-							<label for="exampleInputPassword1">Số điện thoại</label>
+								<label for="exampleInputEmail1">Họ và tên</label> <br>
 								<sec:authorize access="isAuthenticated()">
 									<div>
-									<%
-										String username = "";
-										Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+										<%
+											String username = "";
+										Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication()
+												.getPrincipal();
 										if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
-										  username = ((User)principal).getPhone();
+											username = ((User) principal).getFirstName() + " " + ((User) principal).getName();
 										}
 										out.write(username);
-									%>
+										%>
 									</div>
 								</sec:authorize>
-							 	<sec:authorize access="!isAuthenticated()">
-							 		<input type="text" name="customerPhone" placeholder="Nhập phone">
-							 	</sec:authorize>
+								<sec:authorize access="!isAuthenticated()">
+									<input type="text" name="customerName"
+										placeholder="Vui lòng nhập trên của bạn">
+								</sec:authorize>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">Địa chỉ giao hàng</label> <input
-									type="text" class="form-control" id="exampleInputPassword1"
-									placeholder="Địa chỉ giao hàng" name="customerAddress">
+								<label for="exampleInputPassword1">Số điện thoại</label><br>
+								<sec:authorize access="isAuthenticated()">
+									<div>
+										<%
+											String username1 = "";
+										Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication()
+												.getPrincipal();
+										if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+											username1 = ((User) principal).getPhone();
+										}
+										out.write(username1);
+										%>
+									</div>
+								</sec:authorize>
+								<sec:authorize access="!isAuthenticated()">
+									<input type="text" name="customerPhone"
+										placeholder="Nhập phone">
+								</sec:authorize>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Email</label><br>
+								<sec:authorize access="isAuthenticated()">
+									<div>
+										<%
+											String username1 = "";
+										Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication()
+												.getPrincipal();
+										if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+											username1 = ((User) principal).getEmail();
+										}
+										out.write(username1);
+										%>
+									</div>
+								</sec:authorize>
+								<sec:authorize access="!isAuthenticated()">
+									<input type="text" name="customerEmail"
+										placeholder="Nhập Email">
+								</sec:authorize>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Địa chỉ giao hàng</label><br>
+								<sec:authorize access="isAuthenticated()">
+									<div>
+										<%
+											String username2 = "";
+										Object principal = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication()
+												.getPrincipal();
+										if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+											username2 = ((User) principal).getAddress();
+										}
+										out.write(username2);
+										%>
+									</div>
+								</sec:authorize>
+								<sec:authorize access="!isAuthenticated()">
+									<input type="text" name="customerAddress"
+										placeholder="Vui Lòng nhập địa chỉ của bạn">
+								</sec:authorize>
 							</div>
 
 							<button type="submit" class="btn btn-primary">Thanh toán</button>
@@ -98,7 +150,7 @@
 									<tr>
 										<th scope="row">1</th>
 										<td>${item.productName }</td>
-										<td>${item.unitPrice }</td>
+										<td>${item.unitPriceVN }</td>
 										<td>${item.quantity }</td>
 									</tr>
 

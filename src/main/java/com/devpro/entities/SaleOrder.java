@@ -31,7 +31,10 @@ public class SaleOrder extends BaseEntity {
 
 	@Column(name = "customer_address")
 	private String customerAddress;
-
+	
+	@Column(name = "customer_email")
+	private String customerEmail;
+	
 	@Column(name = "seo")
 	private String seo;
 
@@ -115,6 +118,14 @@ public class SaleOrder extends BaseEntity {
 
 	public void setTotalVN(String totalVN) {
 		this.totalVN = totalVN;
+	}
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
 //	public User getUser() {

@@ -1,8 +1,5 @@
 package com.devpro.controller.admin;
 
-import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.devpro.common.ProductSearch;
 import com.devpro.entities.AjaxResponse;
-import com.devpro.entities.Contact;
 import com.devpro.entities.Product;
 import com.devpro.repositories.CategoryRepo;
 import com.devpro.repositories.ProductRepo;
@@ -35,7 +30,7 @@ public class AdminProductController {
 	ProductService productService;
 	@Autowired
 	public ProductRepo productRepo;
-
+	
 	@RequestMapping(value = { "/admin/list-product" }, method = RequestMethod.GET)
 	public String listProduct(final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
@@ -54,6 +49,7 @@ public class AdminProductController {
 	@RequestMapping(value = { "/admin/edit-product/{seo}" }, method = RequestMethod.GET)
 	public String editProduct(@PathVariable("seo") String seo, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
+		
 		model.addAttribute("categories", categoryRepo.findAll());
 		ProductSearch productSearch = new ProductSearch();
 		productSearch.setSeoProduct(seo);

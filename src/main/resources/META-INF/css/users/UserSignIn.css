@@ -6,6 +6,7 @@
 	height: 300px;
 	margin: auto;
 	margin-top: 50px;
+	margin-bottom: 50px;
 }
 .main > .sign-in > .title{
 	display: flex;

@@ -103,6 +103,26 @@
 									value="false" />
 								<label class="form-check-label"> Nữ </label>
 							</div>
+							<div class="form-group" style="margin-left: 20px;">
+								<label>Chọn quyền</label><br>
+
+								<form:checkbox path="roles" class="form-check-input"
+									value="1" />
+								<label class="form-check-label"> admin </label>
+								<form:checkbox path="roles" class="form-check-input"
+									value="2" />
+								<label class="form-check-label"> Khách hàng </label>
+								<form:checkbox path="roles" class="form-check-input"
+									value="3" />
+								<label class="form-check-label"> Nhân viên </label> 
+								
+								<%-- <c:forEach items="${role}" var="rolez">
+									<form:radiobutton path="roles" class="form-check-input"
+										value="${rolez.id }" />
+									<label class="form-check-label"> ${rolez.description }</label>
+
+								</c:forEach> --%>
+							</div>
 							<div style="margin-left: 20px;">
 								<label>Ảnh của người dùng</label> <input type="file"
 									name="images" style="border: 0px solid #dcdbdb;">

@@ -434,9 +434,9 @@
 /*-------------------------bottom-----------------*/
 .main>.bottom {
 	width: 1000px;
-	height: 750px;
+	height: 760px;
 	background: #ffffff;
-	margin-top: 770px;
+	margin-top: 420px;
 }
 
 .main>.bottom>.title {
@@ -460,7 +460,7 @@
 
 .main>.bottom>.content {
 	max-width: 1000px;
-	height: 701px;
+	height: 720px;
 	border: 1px solid #eadddd;
 }
 
