@@ -2,6 +2,7 @@ package com.devpro.controller.admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,7 +73,7 @@ public class AdminProductController {
 	@RequestMapping(value = { "/admin/list-product/delete-product-with-ajax/{seo}" }, method = RequestMethod.POST)
 	public ResponseEntity<AjaxResponse> subscribe(@PathVariable("seo") String seo, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
-
+		HttpSession httpSession = request.getSession();
 //		model.addAttribute("categories", categoryRepo.findAll());
 //		model.addAttribute("product", productService.findProductBySeo(seo));
 
@@ -84,6 +85,7 @@ public class AdminProductController {
 
 //				System.out.println("ID:  "+products.getId());
 //				System.out.println("title :  "+products.getTitle());
+		products.setUpdatedDate(java.time.LocalDateTime.now());
 
 		products.setPriceVN(products.getPriceVN());
 		products.setStatus(false);

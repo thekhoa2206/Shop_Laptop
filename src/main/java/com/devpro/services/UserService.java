@@ -29,9 +29,6 @@ public class UserService {
 
 	public User findUserById(final int id) {
 
-//		String jpql = "Select p from Product p where p.seo = '" + seo + "'";
-//		Query query = entityManager.createQuery(jpql, Product.class);
-
 		String sql = "select * from tbl_users where id = '" + id + "'";
 		Query query = entityManager.createNativeQuery(sql, User.class);
 		return (User) query.getSingleResult();
@@ -65,7 +62,6 @@ public class UserService {
 			return null;
 		}
 	}
-
 	@Transactional(rollbackOn = Exception.class)
 	public void saveUser(MultipartFile[] images, User user) throws Exception {
 		try {
@@ -73,26 +69,29 @@ public class UserService {
 				// lấy dữ liệu cũ của sản phẩm
 				User userInDb = userRepo.findById(user.getId()).get();
 				// lấy danh sách ảnh của user cũ
-				String avatar = userInDb.getAvatar();
+				 String avatar = userInDb.getAvatar();
 				if (!isEmptyUploadFile(images)) { // nếu admin sửa ảnh sản phẩm
 					// xoá ảnh cũ đi
-					new File("D:/JavaWeb10_VuTheKhoa_Day27/com.devpro.shop/upload_avt/" + user.getAvatar()).delete();
-
+					 new File("D:/JavaWeb10_VuTheKhoa_Day27/com.devpro.shop/upload_avt/" + user.getAvatar()).delete();
+				
 				} else { // ảnh phải giữ nguyên
 					user.setAvatar(avatar);
 				}
-
 			}
 			if (!isEmptyUploadFile(images)) { // nếu admin upload ảnh
 				for (MultipartFile image : images) {
 					// Lưu file vào host.
 					image.transferTo(new File(
-							"D:/JavaWeb10_VuTheKhoa_Day27/com.devpro.shop/upload_avt/" + image.getOriginalFilename()));
+							"D:/JavaWeb10_VuTheKhoa_Day27/com.devpro.shop/upload_avt/" + image.getOriginalFilename()));					
 					user.setAvatar(image.getOriginalFilename());
 				}
 			}
+			if(user.getCreatedDate() != null) {
+				user.setUpdatedDate(java.time.LocalDateTime.now());
+			}else {
+				user.setCreatedDate(java.time.LocalDateTime.now());
+			}
 
-			user.setPassword(GeneratePassword.GenerPass(user.getPassword()));
 			userRepo.save(user);
 		} catch (Exception e) {
 			throw e;
@@ -104,6 +103,7 @@ public class UserService {
 		try {
 			user.setPassword(GeneratePassword.GenerPass(user.getPassword()));
 			user.getRoles().add(findRoleById(2));
+			user.setUpdatedDate(java.time.LocalDateTime.now());
 			user.setStatus(true);
 			userRepo.save(user);
 		} catch (Exception e) {

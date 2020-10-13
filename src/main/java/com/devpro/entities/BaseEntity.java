@@ -39,7 +39,6 @@ public class BaseEntity {
 	}
 
 	public LocalDateTime getCreatedDate() {
-		createdDate = java.time.LocalDateTime.now();
 		return createdDate;
 	}
 
@@ -48,7 +47,6 @@ public class BaseEntity {
 	}
 
 	public LocalDateTime getUpdatedDate() {
-		updatedDate = java.time.LocalDateTime.now();
 		return updatedDate;
 	}
 

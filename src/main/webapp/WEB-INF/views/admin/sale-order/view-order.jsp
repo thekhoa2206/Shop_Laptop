@@ -58,7 +58,36 @@
 										</tr>
 									</c:forEach>
 								</tbody>
+								<tbody>
+
+									<tr>
+										<td>Tổng:</td>
+										<td></td>
+										<td>${saleOrder.totalVN }</td>
+									</tr>
+
+								</tbody>
 							</table>
+							<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Họ và tên</th>
+								<th scope="col">Số điện thoại</th>
+								<th scope="col">Email</th>
+								<th scope="col">Địa chỉ</th>
+							</tr>
+
+						</thead>
+						<tbody>
+							<tr>
+								<td>${saleOrder.customerName }</td>
+								<td>${saleOrder.customerPhone }</td>
+								<td>${saleOrder.customerEmail }</td>
+								<td>${saleOrder.customerAddress }</td>
+							</tr>
+
+						</tbody>
+					</table>
 						</div>
 					</div>
 				</main>

@@ -52,11 +52,9 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = { "/admin/edit-user/{id}" }, method = RequestMethod.GET)
-	public String editUser(@PathVariable("id") int id,@ModelAttribute("user") User user, final ModelMap model, final HttpServletRequest request,
+	public String editUser(@PathVariable("id") int id, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
-		
 		model.addAttribute("role", roleRepo.findAll());
-
 		model.addAttribute("user", userService.findUserById(id));
 		return "admin/user/add-user";
 	}
@@ -74,7 +72,7 @@ public class AdminUserController {
 			@PathVariable("id") int id, final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response) throws Exception {
 
-
+		
 		User users = userService.findUserById(id);
 
 //				System.out.println("ID:  "+products.getId());
@@ -82,6 +80,7 @@ public class AdminUserController {
 //				System.out.println("price:  "+products.getPrice());
 //				System.out.println("Seo Pr:  "+products.getSeo());
 //				System.out.println("Status:  "+products.getStatus());
+		users.setUpdatedDate(java.time.LocalDateTime.now());
 		users.setStatus(false);
 		userRepo.save(users);
 

@@ -24,7 +24,7 @@ public class Role extends BaseEntity implements GrantedAuthority{
 	private String description;
 	
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "roles")
+	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "roles")
 	private List<User> users = new ArrayList<User>();
 	
 	public String getName() {

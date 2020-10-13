@@ -138,6 +138,7 @@ public class SaleOrderService {
 			}
 
 		}
+		saleOrder.setCreatedDate(java.time.LocalDateTime.now());
 		saleOrder.setTotal(sum);
 		saleOrderRepo.save(saleOrder);
 		sendEmail(saleOrder, cartItems);

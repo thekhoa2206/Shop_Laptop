@@ -45,11 +45,11 @@
 							<table class="table table-striped table-sm">
 								<thead>
 									<tr>
-										<th>ID</th>
 										<th>Mã đơn hàng</th>
 										<th>Tên khách hàng</th>
-										<th>Địa chỉ</th>
 										<th>Số điện thoại</th>
+										<th>Email</th>
+										<th>Ngày tạo</th>
 										<th>Tổng tiền</th>
 										<th>Status</th>
 										<th></th>
@@ -59,11 +59,11 @@
 								<tbody style="border: 1px solid #b5b5b5">
 									<c:forEach items="${saleOrders }" var="saleOrder">
 										<tr>
-											<td>${saleOrder.id}</td>
 											<td>${saleOrder.code }</td>
 											<td>${saleOrder.customerName }</td>
-											<td>${saleOrder.customerAddress }</td>
 											<td>${saleOrder.customerPhone }</td>
+											<td>${saleOrder.customerEmail }</td>
+											<td>${saleOrder.createdDate }</td>
 											<td>${saleOrder.totalVN }</td>
 											<td><c:choose>
 													<c:when test="${saleOrder.status =='true'}">

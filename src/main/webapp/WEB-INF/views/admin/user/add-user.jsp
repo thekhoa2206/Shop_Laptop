@@ -106,9 +106,9 @@
 							<div class="form-group" style="margin-left: 20px;">
 								<label>Chọn quyền</label><br>
 
-								<form:checkbox path="roles" class="form-check-input"
+								 <form:checkbox path="roles" class="form-check-input"
 									value="1" />
-								<label class="form-check-label"> admin </label>
+								<label class="form-check-label"> Người quản trị </label>
 								<form:checkbox path="roles" class="form-check-input"
 									value="2" />
 								<label class="form-check-label"> Khách hàng </label>
@@ -117,7 +117,7 @@
 								<label class="form-check-label"> Nhân viên </label> 
 								
 								<%-- <c:forEach items="${role}" var="rolez">
-									<form:radiobutton path="roles" class="form-check-input"
+									<form:checkbox path="roles" class="form-check-input"
 										value="${rolez.id }" />
 									<label class="form-check-label"> ${rolez.description }</label>
 
