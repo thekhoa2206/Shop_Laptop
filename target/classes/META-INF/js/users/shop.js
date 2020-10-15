@@ -4,7 +4,7 @@ var Shop = {
 				.split('&'), sParameterName, i;
 		for (i = 0; i < sURLVariables.length; i++) {
 			sParameterName = sURLVariables[i].split('=');
-
+			
 			if (sParameterName[0] === sParam) {
 				return sParameterName[1] === undefined ? true
 						: decodeURIComponent(sParameterName[1]);
@@ -12,10 +12,18 @@ var Shop = {
 		}
 	},
 	homePage : function(baseUrl, numberOP ) {
+		var sort = Shop.getUrlParameter("sort");
 		var currentPage = parseInt(Shop.getUrlParameter("page"));
-		window.location = baseUrl + "?page=" + numberOP;
+		
+		if(sort != null || sort != undefined){
+			window.location = baseUrl + "?page=" + numberOP  + "?field=price&sort=" +sort;
+
+		}else{
+			window.location = baseUrl + "?page=" + numberOP;
+		}
+		
 	},
-	homePrevious : function(baseUrl) {
+	homePrevious : function(baseUrl, numberOfPage) {
 		var currentPage = parseInt(Shop.getUrlParameter("page"));
 		if(currentPage== null){
 			window.location = baseUrl + "?page=" + 1;
@@ -38,6 +46,12 @@ var Shop = {
 			document.getElementById("next").disabled = true;
 		}
 		}
+	},
+	highTolow : function(baseUrl ){
+		window.location = baseUrl +"?field=price&sort=desc";
+	},
+	lowToHight : function(baseUrl ){
+		window.location = baseUrl + "?field=price&sort=asc";
 	},
 	addItemToCart : function(productId, quantity) {
 		var data = {

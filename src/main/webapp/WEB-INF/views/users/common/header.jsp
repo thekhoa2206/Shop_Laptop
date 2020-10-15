@@ -11,6 +11,9 @@
 <!-- spring taglibs -->
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<!-- SPRING FORM -->
+<%@ taglib prefix="springform"
+	uri="http://www.springframework.org/tags/form"%>
 
 <c:url value="${pageContext.request.contextPath}" var="base" />
 
@@ -52,10 +55,18 @@
 			<img src="${base}/images/users/logo.jpg">
 		</div>
 		<div class="middle">
-			<ul>
-				<li><input type="text" style="padding-left: 8px;" class=""
-					placeholder="Nhập tên điện thoại, laptop, phụ kiện... cần tìm"></li>
-			</ul>
+			<form action="${base}/">
+				<ul style="list-style:none;"> 
+					<input type="hidden" name=""/>
+					<li><input type="text" style="padding-left: 8px;margin-top:20px;" class=""
+						name="keyword"
+						placeholder="Nhập tên điện thoại, laptop, phụ kiện... cần tìm" th:value="${keyword }" required/>
+						<input type="submit" value="Search" style="width: 60px;"/>
+						<input type="button" value="Clear" onclick="clearFilter()" style="width: 60px;"/></li>
+
+
+				</ul>
+			</form>
 		</div>
 		<div class="right">
 			<a href="#"> <svg width="3em" height="3em" viewBox="0 0 16 16"
@@ -70,7 +81,7 @@
 					fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						<path fill-rule="evenodd"
 						d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-						</svg>(${SL_SP_GIO_HANG })
+						</svg>${SL_SP_GIO_HANG }
 			</a>
 		</div>
 	</div>
@@ -98,3 +109,9 @@
 		<!-- /menu -->
 	</div>
 	<!-- /header -->
+	
+	<script type="text/javascript">
+	function clearFilter(){
+		window.location = '/';
+	}
+	</script>

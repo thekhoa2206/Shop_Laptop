@@ -15,7 +15,7 @@
 	uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
-<html>
+<html >
 <head>
 <title>Trang Chủ</title>
 <meta charset="utf-8">
@@ -77,23 +77,24 @@
 			<div class="left">
 				<!-- menu -->
 				<jsp:include page="/WEB-INF/views/users/common/menu.jsp"></jsp:include>
-				<!-- /menu -->
-
-				<div class="support">
-					<div class="title">Hỗ Trợ Online</div>
+				<div class="filter">
+					<div class="title">Tìm Kiếm Sản Phẩm</div>
 					<div class="content">
-						<ul>
-							<li><img src="${base}/images/users/icon-phone.jpg"> <span>097999999</span>
-							</li>
-							<li><img src="${base}/images/users/icon-facebook.jpg">
-								<a href="#">Facebook</a></li>
-							<li><img src="${base}/images/users/icon-instagram.jpg">
-								<a href="#">Instagram</a></li>
-							<li><img src="${base}/images/users/icon-email.jpg"> <a
-								href="#">Gmail</a></li>
-						</ul>
+						<div style="margin-top:20px; margin-left:20px;">
+							<button onclick="Shop.highTolow('${base}/');" >Cao đến thấp</button>
+							<button onclick="Shop.lowToHight('${base}/');" >Thấp đến cao</button>
+						</div>
+						<br> <select>
+							<option>Khoảng giá</option>
+							<option>Dưới 5.000.000</option>
+							<option>5.000.000 - 10.000.000</option>
+							<option>10.000.000 - 15.000.000</option>
+							<option>15.000.000 - 20.000.000</option>
+							<option>Lớn hơn 20.000.000</option>
+						</select><br> <a href="#"><button>Tìm Kiếm</button></a>
 					</div>
 				</div>
+				<!-- /menu -->
 			</div>
 			<!-- /left -->
 			<!-- middle -->
@@ -167,7 +168,7 @@
 						</div>
 					</div>
 				</div>
-		   </div>
+			</div>
 			<!-- /middle -->
 			<!-- bottom -->
 			<div class="bottom">

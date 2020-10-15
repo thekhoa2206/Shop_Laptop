@@ -17,16 +17,33 @@ public class ProductSearch {
 	private int id;
 	private String name;
 	private Integer currentPage;
+	private String sort; 
+	private String keyword;
 	@Autowired ProductService productService;
 	
 	public void parseRequest(final HttpServletRequest request) { // phân trang
 		Integer currentPage = null;
+		String sort = null;
+		String strSort = request.getParameter("sort");	
+		if(strSort != null && !strSort.isEmpty()) {
+			sort = strSort;
+		}
+		
 		String strPage = request.getParameter("page");		
 		if (strPage != null && !strPage.isEmpty()) {
 			currentPage = Integer.parseInt(strPage);
 		}
-
+		this.setSort(sort);
 		this.setCurrentPage(currentPage);
+		
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 
 	public String getSeoCategory() {
@@ -69,4 +86,12 @@ public class ProductSearch {
 		this.currentPage = currentPage;
 	}
 
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
 }

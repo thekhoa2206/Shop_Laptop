@@ -20,4 +20,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/resources/META-INF/js/admin/bootstrap.bundle.min.js</name>
+			<type>1</type>
+			<location>C:/Users/Administrator/Downloads/bootstrap/bootstrap-4.5.3-examples/assets/dist/js/bootstrap.bundle.min.js</location>
+		</link>
+	</linkedResources>
 </projectDescription>

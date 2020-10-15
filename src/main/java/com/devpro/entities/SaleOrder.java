@@ -128,6 +128,7 @@ public class SaleOrder extends BaseEntity {
 		this.customerEmail = customerEmail;
 	}
 
+
 //	public User getUser() {
 //		return user;
 //	}

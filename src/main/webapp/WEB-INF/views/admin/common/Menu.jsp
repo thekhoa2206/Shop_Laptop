@@ -127,7 +127,7 @@
 								<path fill-rule="evenodd"
 							d="M10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4h-3.5a.5.5 0 0 1-.5-.5z" />
 								</svg></li>
-				<li><a href="#">Thống kê</a></li>
+				<li><a href="${base }/admin/BarGraph">Thống kê</a></li>
 			</ul>
 		</li>
 		<li class="menu-1">

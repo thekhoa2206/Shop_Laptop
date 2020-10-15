@@ -31,7 +31,7 @@ body {
 	display: flex;
 }
 
-.toolbar>.right>.search input {
+.toolbar .right .search input {
 	margin-left: 50px;
 	height: 25px;
 	width: 200px;
