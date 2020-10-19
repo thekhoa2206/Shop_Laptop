@@ -18,14 +18,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Lớp JAVA10 Devpro</title>
+<title>Shop</title>
 
 <!-- css -->
 <link href="${base}/css/users/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 </head>
-
+	
 <body>
 
 	<!-- Navigation -->

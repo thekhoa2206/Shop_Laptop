@@ -1,0 +1,110 @@
+.main{
+	width:1000px;
+	margin:auto;
+	margin-top:50px;
+	margin-bottom:50px;
+}
+.main > span{
+	margin-left:40px;
+}
+.main > .info-user{
+	width:1000px;
+	display: flex;
+	margin-left:40px;
+}
+.main > .info-user .info-2{
+	margin-left:100px;
+}
+.main > .info-user .info-1,.info-2{
+	width:400px;
+	margin-top:50px;
+}
+.main > .info-user .info-2 .title span{
+	font-size:16px;
+}
+.main > .info-user .info-1 .title span{
+	font-size:16px;
+}
+.main > .info-user .info-2 .content{
+	margin-top:20px;
+	width:380px;
+	height:90px;
+	border-radius:5px;
+	background: #dfdcdd;
+	
+}
+.main > .info-user .info-1 .content{
+	margin-top:20px;
+	width:380px;
+	height:90px;
+	border-radius:5px;
+	background: #dfdcdd;
+}
+.main > .info-user .info-1 .content span{
+	margin-left:20px;
+}
+.main > .info-user .info-2 .content span{
+	margin-left:20px;
+}
+.main > .info-order{
+	width: 900px;
+	margin-left:40px;
+	background: #dfdcdd;
+	border-radius: 5px;
+
+}
+.main > .info-order > table{
+	width: 900px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border-radius: 5px;
+	
+	
+}
+.main > .info-order > table thead{
+	border: 1px solid white;
+	border-left: 0px;
+	border-right: 0px;
+	
+}
+.main > .info-order > table thead th{
+	margin-left:30px;
+	line-height: 60px;
+	
+
+}
+.main > .info-order > table thead th{
+	margin-left:20px;
+	
+
+}
+.main > .info-order > table tbody tr{
+	border: 1px solid white;
+	border-left: 0px;
+	border-right: 0px;
+}
+.main > .info-order > table tbody tr img{
+	width: 80px;
+	margin-right:10px;
+	margin-left: 20px;
+}
+.main > .info-order > table tbody tr:hover{
+	background: #a1cff2;
+}
+.main > .info-order > table tbody tr td{
+	line-height: 120px;
+
+}
+.main > .info-order > table tfoot{
+	float: right;
+}
+.main > .info-order > table tfoot tr{
+	margin-top: 10px;
+}
+.main > .info-order > table tfoot tr p{
+	
+	margin-right:20px;
+}
+.main > .info-order > table tfoot tr .sum{
+	color: red;
+}

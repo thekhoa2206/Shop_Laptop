@@ -23,7 +23,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Lớp JAVA10 Devpro</title>
+<title>Shop</title>
 
 <!-- css -->
 <link href="${base}/css/users/bootstrap/css/bootstrap.min.css"
@@ -127,8 +127,8 @@
 										placeholder="Vui Lòng nhập địa chỉ của bạn">
 								</sec:authorize>
 							</div>
-
 							<button type="submit" class="btn btn-primary">Thanh toán</button>
+
 						</form>
 					</div>
 				</div>
@@ -142,6 +142,7 @@
 									<th scope="col">Tên sản phẩm</th>
 									<th scope="col">Đơn giá</th>
 									<th scope="col">Số lượng</th>
+									<th scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -152,6 +153,7 @@
 										<td>${item.productName }</td>
 										<td>${item.unitPriceVN }</td>
 										<td>${item.quantity }</td>
+										<td><button onclick="confirmDelete('${item.productId}')">Xóa</button></td>
 									</tr>
 
 								</c:forEach>
@@ -174,9 +176,8 @@
 	<!-- Footer -->
 	<jsp:include page="/WEB-INF/views/users/common/footer.jsp"></jsp:include>
 
-	<!-- java script -->
-	<jsp:include page="/WEB-INF/views/users/common/js.jsp"></jsp:include>
-
+	<script src="${base}/css/users/bootstrap/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="${base}/js/users/Cart.js"></script>
 </body>
 
 </html>

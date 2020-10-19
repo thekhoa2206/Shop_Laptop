@@ -1,0 +1,32 @@
+.main{
+	width: 1200px;
+	margin:auto;
+}
+.main > .inner{
+	width: 1200px;
+	margin:auto;
+}
+.main > .inner > table{
+	width: 1200px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border-radius: 10px;
+}
+.main > .inner > table thead{
+	border: 1px solid #e6e5e5;
+}
+.main > .inner > table thead th{
+	margin-left:30px;
+	line-height: 60px;
+	text-align: center;
+}
+.main > .inner > table tbody tr{
+	border: 1px solid #e6e5e5;
+}
+.main > .inner > table tbody tr:hover{
+	background: #a1cff2;
+}
+.main > .inner > table tbody tr td{
+	line-height: 60px;
+	text-align: center;
+}

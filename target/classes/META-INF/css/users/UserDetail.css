@@ -82,13 +82,13 @@ body{
 	margin-top: 20px;
 	text-align: center;
 }
-.main > .main-top > .right .bottom a div{
+.main > .main-top > .right .bottom button{
 	width: 450px;
 	line-height: 50px;
 	background: red;
 	border: 1px solid red;
 }
-.main > .main-top > .right .bottom a{
+.main > .main-top > .right .bottom button{
 	text-decoration: none;
 	color: white;
 	font-size: 20px;

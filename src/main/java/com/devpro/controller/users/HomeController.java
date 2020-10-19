@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.devpro.common.ProductSearch;
 import com.devpro.entities.Product;
+import com.devpro.entities.User;
 import com.devpro.services.ProductService;
 
 @Controller
@@ -33,7 +35,9 @@ public class HomeController extends BaseController {
 //		for(Category category : categories) {
 //			System.out.println(category.getName());
 //		}
-
+		
+		
+		
 		ProductSearch productSearch = new ProductSearch();
 
 		keyword = request.getParameter("keyword");

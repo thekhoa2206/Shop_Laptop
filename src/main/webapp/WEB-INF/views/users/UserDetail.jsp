@@ -24,32 +24,26 @@
 		<!-- main -->
 		<div class="main">
 			<div class="title">
-				<br> <span> <c:forEach var="product"
-						items="${products }">
-					${product.title }
-				</c:forEach>
-				</span>
+				<br> <span> ${product.title } </span>
 			</div>
 			<div class="main-top">
 				<div class="left">
 					<div class="slide-img">
-						<a href="#"><img src="${base}/images/users/chitiet-1.jpg"
+						<a href="#"><img src="${base}/file/upload/${product.productImages[0].path}"
 							id="place-img"></a>
 					</div>
 					<div class="choose-img">
-						<img src="${base}/images/users/chitiet-1.jpg" id="img1"> <img
-							src="${base}/images/users/chitiet-2.jpg" id="img2"> <img
-							src="${base}/images/users/chitiet-3.jpg" id="img3"> <img
-							src="${base}/images/users/chitiet-4.jpg" id="img4"> <img
-							src="${base}/images/users/chitiet-5.jpg" id="img5">
+						<img src="${base}/file/upload/${product.productImages[0].path}" id="img1"> <img
+							src="${base}/file/upload/${product.productImages[1].path}" id="img2"> <img
+							src="${base}/file/upload/${product.productImages[2].path}" id="img3"> <img
+							src="${base}/file/upload/${product.productImages[3].path}" id="img4"> <img
+							src="${base}/file/upload/${product.productImages[4].path}" id="img5">
 					</div>
 				</div>
 				<div class="right">
 					<div class="top">
-						<br> <span class="span1"><c:forEach var="product"
-								items="${products }">
-					${product.price } Đ
-				</c:forEach></span><br> <br> <span class="span2">Giá gốc:</span>
+						<br> <span class="span1"> ${product.priceVN } </span><br>
+						<br> <span class="span2">Giá gốc:</span>
 						<del>30.990.000đ</del>
 						<br> <br> <br> <span class="span3">CPU:</span><span
 							class="span4">Intel, Core i5 Comet Lake</span><br> <br>
@@ -65,54 +59,21 @@
 							PHÍ GIAO HÀNG toàn địa bàn Hà Nội</span><br>
 					</div>
 					<div class="bottom">
-						<a href="#"><div>
-								<span>THÊM VÀO GIỎ HÀNG</span>
-							</div></a>
+						<button type="button"
+							onclick="Shop.addItemToCart(${product.id}, 1)">
+							<span>THÊM VÀO GIỎ HÀNG</span>
+						</button>
 					</div>
 				</div>
 			</div>
 			<div class="main-bot">
-				<div class="info-detail">
-					<div class="title">Thông tin chi tiết</div>
-					<div class="content">
-						<div class="left">
-							<ul style="background: #c2c1c0; width: 180px;">
-								<li>Tên</li>
-								<li>CPU</li>
-								<li>RAM</li>
-								<li>Card đồ họa</li>
-								<li>Ổ đĩa quang</li>
-								<li>Kết nối</li>
-								<li>Thời lượng pin</li>
-								<li>Kích cỡ</li>
-								<li>Trọng lượng</li>
-							</ul>
-						</div>
-						<div class="right">
-							<ul>
-								<li>Asus ZenBook</li>
-								<li style="background: #ebe9e9;">Intel, Core i5 Comet Lake</li>
-								<li>8 GB, LPDDR3</li>
-								<li style="background: #ebe9e9;">NVIDIA GeForce MX250, Card
-									rời và tích hợp</li>
-								<li>SSD, 512 GB</li>
-								<li style="background: #ebe9e9;">Wifi chuẩn N, LAN
-									10/100/1000, USB 2.0 và 3.0, VGA, HDMI, E-SATA, DisplayPort</li>
-								<li>2 giờ</li>
-								<li style="background: #ebe9e9;">14.0 inchs, 1920 x 1080
-									Pixels</li>
-								<li>2.3 kg</li>
-							</ul>
-						</div>
-					</div>
-				</div>
 				<div class="description">
 					<div class="title">Mô tả chi tiết sản phẩm</div>
 					<div class="content">
 						<div style="margin-left: 20px; margin-right: 20px;">
-							<c:forEach var="product" items="${products }">
-								<span>${product.shortDetails }</span>
-							</c:forEach>
+
+							<span>${product.shortDetails }</span>
+
 						</div>
 					</div>
 				</div>
@@ -150,5 +111,10 @@
 		<!-- /footer -->
 	</div>
 	<!-- wrapper -->
+
+	<!-- js  -->
+	<script type="text/javascript" src="${base}/js/users/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="${base}/js/users/script.js"></script>
+	<script type="text/javascript" src="${base}/js/users/shop.js"></script>
 </body>
 </html>

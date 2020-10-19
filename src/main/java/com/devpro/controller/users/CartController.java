@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -97,6 +98,7 @@ public class CartController extends BaseController {
 			NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 			 sumVN =fmt.format(sum);
 		}
+		model.addAttribute("quantityCart", cartItems.size() );
 		model.addAttribute("cartItems", cartItems );
 		model.addAttribute("sumVN", sumVN);
 		saleOrderService.saveOrderProduct(customerAddress, customerName,customerPhone,customerEmail, httpSession);
@@ -108,6 +110,30 @@ public class CartController extends BaseController {
 	public String index(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
 		return "users/checkout";
+	}
+	@RequestMapping(value = { "/cart/check-out/delete-product-cart-with-ajax/{productId}" }, method = RequestMethod.POST)
+	public ResponseEntity<AjaxResponse> subscribe(@RequestBody CartItem data,
+			@PathVariable("productId") int productId, final ModelMap model, final HttpServletRequest request,
+			final HttpServletResponse response) throws Exception {
+
+		HttpSession httpSession = request.getSession();
+		Cart cart = null;
+		if (httpSession.getAttribute("GIO_HANG") != null) {
+			cart = (Cart) httpSession.getAttribute("GIO_HANG");
+		} else {
+			cart = new Cart();
+			httpSession.setAttribute("GIO_HANG", cart);
+		}
+
+		List<CartItem> cartItems = cart.getCartItems();
+		
+		for(int a=0; a< cartItems.size(); a++) {
+			if(cartItems.get(a).getProductId() == productId) {
+				cartItems.remove(a);
+			}
+		}
+
+		return ResponseEntity.ok(new AjaxResponse(200, "Success"));
 	}
 
 	@RequestMapping(value = { "/cart/mua-hang" }, method = RequestMethod.POST)
@@ -126,6 +152,7 @@ public class CartController extends BaseController {
 
 		List<CartItem> cartItems = cart.getCartItems();
 		boolean isExists = false;
+		int quantity =0;
 		for (CartItem item : cartItems) {
 			if (item.getProductId() == data.getProductId()) {
 				isExists = true;
@@ -139,10 +166,13 @@ public class CartController extends BaseController {
 			data.setUnitPrice(product.getPrice());
 			cart.getCartItems().add(data);
 		}
+		for (CartItem item : cartItems) {
+			quantity += item.getQuantity();
+		}
+		
+		httpSession.setAttribute("SL_SP_GIO_HANG", quantity);
 
-		httpSession.setAttribute("SL_SP_GIO_HANG", cart.getCartItems().size());
-
-		return ResponseEntity.ok(new AjaxResponse(200, String.valueOf(cart.getCartItems().size())));
+		return ResponseEntity.ok(new AjaxResponse(200, String.valueOf(quantity)));
 	}
 
 }

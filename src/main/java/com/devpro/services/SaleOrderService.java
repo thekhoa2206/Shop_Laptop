@@ -63,6 +63,31 @@ public class SaleOrderService {
 		Query query = entityManager.createNativeQuery(sql, SaleOrder.class);
 		return (SaleOrder) query.getSingleResult();
 	}
+	public SaleOrder findSaleOrderByCode(String code) {
+
+//		String jpql = "Select p from Product p where p.seo = '" + seo + "'";
+//		Query query = entityManager.createQuery(jpql, Product.class);
+
+		String sql = "select * from tbl_saleorder where code = '" + code + "'";
+		Query query = entityManager.createNativeQuery(sql, SaleOrder.class);
+		return (SaleOrder) query.getSingleResult();
+	}
+	public List<SaleOrderProducts> findSaleOrderProductbyCode(String code) {
+
+		String sql = "select * from tbl_saleorder_products where saleorder_id = (select id from tbl_saleorder where code='" + code
+				+ "')";
+		Query query = entityManager.createNativeQuery(sql, SaleOrderProducts.class);
+		return query.getResultList();
+	}
+	public List<SaleOrder> findSaleOrderByUserId(int id) {
+
+//		String jpql = "Select p from Product p where p.seo = '" + seo + "'";
+//		Query query = entityManager.createQuery(jpql, Product.class);
+
+		String sql = "select * from tbl_saleorder where user_id = " + id;
+		Query query = entityManager.createNativeQuery(sql, SaleOrder.class);
+		return query.getResultList();
+	}
 
 	@Transactional(rollbackOn = Exception.class)
 	public void saveSaleOrder(SaleOrder saleOrder) throws Exception {
@@ -76,6 +101,7 @@ public class SaleOrderService {
 	}
 
 	// gửi email khi đặt hàng xong
+	@Transactional(rollbackOn = Exception.class)
 	public void sendEmail(SaleOrder saleOrder, List<CartItem> cartItems)
 			throws UnsupportedEncodingException, MessagingException {
 

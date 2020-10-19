@@ -70,7 +70,7 @@ var Shop = {
 												// về dữ liệu.
 				alert('thanh cong');
 
-				$("#btnCheckout").html("Giỏ Hàng(" + jsonResult.data + ")");
+				$("#btnCheckout").html("(" + jsonResult.data + ")");
 
 				$('html, body').animate({
 					scrollTop : $("#btnCheckout").offset().top - 100
