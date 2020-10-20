@@ -149,7 +149,7 @@ body{
 }
 
 .main > .main-bot > .comment{
-	width: 1200px;
+	width: 1000px;
 	margin: auto;
 	margin-top: 50px;
 }
@@ -160,30 +160,5 @@ body{
 .main > .main-bot > .comment > .content{
 	background: #ffffff;
 	border-radius: 5px;
-	height: 450px;
 	display: flex;
-}
-.main > .main-bot > .comment > .content .left{
-	width: 600px;
-}
-.main > .main-bot > .comment > .content .right{
-	width: 600px;
-
-}
-.main > .main-bot > .comment > .content .right label{
-	font-size: 15px;
-}
-.main > .main-bot > .comment > .content .right input{
-	margin-bottom: 30px;
-	width: 500px;
-	height: 30px;
-	border-radius: 5px;
-	border: 1px solid #9d9b9b;
-	margin-top: 8px;
-}
-.main > .main-bot > .comment > .content .right textarea{
-	width: 500px;
-	height: 200px;
-	border-radius: 5px;
-	margin-top: 8px;
 }

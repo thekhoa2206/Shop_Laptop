@@ -38,42 +38,56 @@ public class ProductService {
 	@Autowired
 	SaleOrderRepo saleOrderRepo;
 
-	
 	@SuppressWarnings("unchecked")
-	public List<Product> search(final ProductSearch productSearch){
+	public List<Product> search(final ProductSearch productSearch) {
 		String jpql = "Select p from Product p where 1=1";
-		if(productSearch.getSeoCategory() != null && !productSearch.getSeoCategory().isEmpty()){
-			jpql += " and p.category.seo= '" +productSearch.getSeoCategory() +"'";
-		
+		if (productSearch.getSeoCategory() != null && !productSearch.getSeoCategory().isEmpty()) {
+			jpql += " and p.category.seo= '" + productSearch.getSeoCategory() + "'";
+
 		}
-		if(productSearch.getSeoProduct() != null && !productSearch.getSeoProduct().isEmpty()){
-			jpql += " and p.seo= '" +productSearch.getSeoProduct() +"'";
-			
+		if (productSearch.getSeoProduct() != null && !productSearch.getSeoProduct().isEmpty()) {
+			jpql += " and p.seo= '" + productSearch.getSeoProduct() + "'";
+
 		}
-		if(productSearch.getKeyword() != null && !productSearch.getKeyword().isEmpty()){
-			jpql += " and p.category.seo= '" +productSearch.getKeyword() +"'";
-			jpql += " and p.seo= '" +productSearch.getKeyword() +"'";
-			
+		if (productSearch.getKeyword() != null && !productSearch.getKeyword().isEmpty()) {
+			jpql += " and CONCAT(p.title, ' ', p.shortDes, ' ',p.category.seo,' ',p.category.name,' ', p.seo, ' ', p.price) LIKE '%"
+					+ productSearch.getKeyword() + "%'";
+
 		}
-		
-		if(productSearch.getSort() !=null && !productSearch.getSort().isEmpty()) {
-			jpql += " order by p.price " +productSearch.getSort();
+		if (productSearch.getTypePrice() != null && !productSearch.getTypePrice().isEmpty()) {
+			int price = Integer.parseInt(productSearch.getTypePrice());
+			if (price == 1) {
+				jpql += " and price >= " + 0 + " and price <= " + 5000000;
+			}
+			if (price == 2) {
+				jpql += " and price >= " + 5000000 + " and price <= " + 10000000;
+
+			}
+			if (price == 3) {
+				jpql += " and price >= " + 10000000 + " and price <= " + 15000000;
+
+			}
+			if (price == 4) {
+				jpql += " and price >= " + 15000000 + " and price <= " + 20000000;
+
+			}
+			if (price == 5) {
+				jpql += " and price >= " + 20000000;
+			}
+		}
+		if (productSearch.getSort() != null && !productSearch.getSort().isEmpty()) {
+			jpql += " order by p.price " + productSearch.getSort();
 		}
 		Query query = entityManager.createQuery(jpql, Product.class);
-		
-		if(productSearch.getCurrentPage() != null && productSearch.getCurrentPage() > 0) {         // phân trang
-			if(productSearch.getSort() !=null && !productSearch.getSort().isEmpty()) {
-				jpql += " order by p.price " +productSearch.getSort();
-			}
-			query.setFirstResult((productSearch.getCurrentPage()-1) * ProductSearch.SIZE_ITEMS_ON_PAGE);
+
+		if (productSearch.getCurrentPage() != null && productSearch.getCurrentPage() > 0) { // phân trang
+			query.setFirstResult((productSearch.getCurrentPage() - 1) * ProductSearch.SIZE_ITEMS_ON_PAGE);
 			query.setMaxResults(ProductSearch.SIZE_ITEMS_ON_PAGE);
 		}
-		
+
 		return query.getResultList();
 	}
 
-	
-	
 //	@SuppressWarnings("unchecked")
 //	public List<Product> findProductByCategory(final String seo) {
 //
@@ -101,12 +115,14 @@ public class ProductService {
 		Query query = entityManager.createNativeQuery(sql, Product.class);
 		return query.getResultList();
 	}
+
 	public List<Product> findProductById(int id) {
 
-		String sql = "select * from tbl_products where id = '" +id +"'";
+		String sql = "select * from tbl_products where id = '" + id + "'";
 		Query query = entityManager.createNativeQuery(sql, Product.class);
 		return query.getResultList();
 	}
+
 	private boolean isEmptyUploadFile(MultipartFile[] images) {
 		if (images == null || images.length <= 0)
 			return true;
@@ -114,7 +130,7 @@ public class ProductService {
 			return true;
 		return false;
 	}
-	
+
 	@Transactional(rollbackOn = Exception.class)
 	public void saveProduct(MultipartFile[] images, Product product) throws Exception {
 		try {
@@ -155,22 +171,5 @@ public class ProductService {
 			throw e;
 		}
 	}
-
-	public List<Product> search1(String keyword){
-		String jpql = "SELECT p FROM Product p WHERE CONCAT(p.title, ' ', p.shortDes, ' ',p.category.seo,' ',p.category.name,' ', p.seo, ' ', p.price) LIKE '%" +keyword+"%'";
-		Query query = entityManager.createQuery(jpql, Product.class);
-		return query.getResultList();
-	}
-
- 
-
-
-	public List<Product> listAll(String keyword) {
-        if (keyword != null) {
-            return search1(keyword);
-        }
-        return productRepo.findAll();
-    }
-
 
 }

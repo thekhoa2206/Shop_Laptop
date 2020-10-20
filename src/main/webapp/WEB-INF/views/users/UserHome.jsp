@@ -84,14 +84,12 @@
 							<button onclick="Shop.highTolow('${base}/');" >Cao đến thấp</button>
 							<button onclick="Shop.lowToHight('${base}/');" >Thấp đến cao</button>
 						</div>
-						<br> <select name="priceNange">
-							<option>Khoảng giá</option>
-							<option value="1">Dưới 5.000.000</option>
-							<option value="2">5.000.000 - 10.000.000</option>
-							<option value="3">10.000.000 - 15.000.000</option>
-							<option value="4">15.000.000 - 20.000.000</option>
-							<option value="5">Lớn hơn 20.000.000</option>
-						</select><br> <a href="#"><button>Tìm Kiếm</button></a>
+						<br> 
+							<a href="${base }/?price=1" onclick="">Dưới 5.000.000đ</a> <br><br>
+							<a href="${base }/?price=2" onclick="">5.000.000đ - 10.000.000đ</a><br><br>
+							<a href="${base }/?price=3" onclick="">10.000.000đ - 15.000.000đ</a><br><br>
+							<a href="${base }/?price=4" onclick="">15.000.000đ - 20.000.000đ</a><br><br>
+							<a href="${base }/?price=5" onclick="">Lớn hơn 20.000.000đ</a>
 					</div>
 				</div>
 				<!-- /menu -->

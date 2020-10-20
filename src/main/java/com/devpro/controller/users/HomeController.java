@@ -26,54 +26,45 @@ public class HomeController extends BaseController {
 
 //	@Autowired  //lấy bean từ container's spring.
 //	private CategoryRepo categoryRepo;
-//	
 	@RequestMapping(value = { "/home", "/index", "/" }, method = RequestMethod.GET)
 	public String index(final ModelMap model, @Param("keyword") String keyword, final HttpServletRequest request,
+
 			final HttpServletResponse response) throws Exception {
 
 //		List<Category> categories = categoryRepo.findAll();
 //		for(Category category : categories) {
 //			System.out.println(category.getName());
 //		}
-		
-		
-		
+
+
 		ProductSearch productSearch = new ProductSearch();
-
+		String strPage = request.getParameter("page");	
+		String price = request.getParameter("price");
+		String sort = request.getParameter("sort");
 		keyword = request.getParameter("keyword");
-
-		List<Product> product = productService.search(productSearch);
 		
+		if (sort != null) {
+			productSearch.setSort(sort);
+		}
+		if (price != null) {
+			productSearch.setTypePrice(price);
+		}
 		if (keyword != null) {
-			List<Product> listProducts = productService.listAll(keyword);
-			int numberOfPage = listProducts.size() / productSearch.SIZE_ITEMS_ON_PAGE + 1;
-		
-			ArrayList numberOP = new ArrayList();
-			for (int i = 1; i < numberOfPage + 1; i++) {
-				numberOP.add(i);
-			}
-			productSearch.parseRequest(request);
-			model.addAttribute("products", listProducts);
-			model.addAttribute("keyword", keyword);
-			model.addAttribute("numberOP", numberOP);
-			model.addAttribute("numberOfPage", numberOfPage);
-			for (Product listProduct : listProducts) {
-				System.out.println("Price "+listProduct.getPrice());
-			}
+			productSearch.setKeyword(keyword);
+		}
+		List<Product> product = productService.search(productSearch);
+
+		int numberOfPage = product.size() / productSearch.SIZE_ITEMS_ON_PAGE + 1;
+		System.out.println("numberOfPage: " + numberOfPage);
+		ArrayList numberOP = new ArrayList();
+		for (int i = 1; i < numberOfPage + 1; i++) {
+			numberOP.add(i);
 		}
 
-		else {
-			int numberOfPage = product.size() / productSearch.SIZE_ITEMS_ON_PAGE + 1;
-			System.out.println("numberOfPage: " + numberOfPage);
-			ArrayList numberOP = new ArrayList();
-			for (int i = 1; i < numberOfPage + 1; i++) {
-				numberOP.add(i);
-			}
-			productSearch.parseRequest(request);
-			model.addAttribute("numberOP", numberOP);
-			model.addAttribute("numberOfPage", numberOfPage);
-			model.addAttribute("products", productService.search(productSearch));
-		}
+		productSearch.parseRequest(request);
+		model.addAttribute("numberOP", numberOP);
+		model.addAttribute("numberOfPage", numberOfPage);
+		model.addAttribute("products", productService.search(productSearch));
 		return "users/UserHome";
 	}
 }

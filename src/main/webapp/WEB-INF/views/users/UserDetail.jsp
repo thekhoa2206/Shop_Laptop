@@ -29,15 +29,21 @@
 			<div class="main-top">
 				<div class="left">
 					<div class="slide-img">
-						<a href="#"><img src="${base}/file/upload/${product.productImages[0].path}"
+						<a href="#"><img
+							src="${base}/file/upload/${product.productImages[0].path}"
 							id="place-img"></a>
 					</div>
 					<div class="choose-img">
-						<img src="${base}/file/upload/${product.productImages[0].path}" id="img1"> <img
-							src="${base}/file/upload/${product.productImages[1].path}" id="img2"> <img
-							src="${base}/file/upload/${product.productImages[2].path}" id="img3"> <img
-							src="${base}/file/upload/${product.productImages[3].path}" id="img4"> <img
-							src="${base}/file/upload/${product.productImages[4].path}" id="img5">
+						<img src="${base}/file/upload/${product.productImages[0].path}"
+							id="img1"> <img
+							src="${base}/file/upload/${product.productImages[1].path}"
+							id="img2"> <img
+							src="${base}/file/upload/${product.productImages[2].path}"
+							id="img3"> <img
+							src="${base}/file/upload/${product.productImages[3].path}"
+							id="img4"> <img
+							src="${base}/file/upload/${product.productImages[4].path}"
+							id="img5">
 					</div>
 				</div>
 				<div class="right">
@@ -80,25 +86,15 @@
 				<div class="comment">
 					<div class="title">Nhận xét khách hàng</div>
 					<div class="content">
-						<div class="left">
-							<br> <br>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<div class="right">
-							<br> <br> <label>Tiêu đề nhận xét: </label><br> <input
-								type="text" name=""
-								placeholder="Nhập tiêu đề nhận xét(Không bắt buộc)"><br>
-							<label>Viết Nhận xét của bạn vào bên dưới: </label><br>
-							<textarea type="text"
-								placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
-							<br> <input
-								style="margin-top: 20px; width: 200px; height: 40px; background: #ed8c3e; margin-left: 150px;"
-								type="submit" name="" value="Gửi nhận xét">
+						<div id="fb-root"></div>
+						<script async defer crossorigin="anonymous"
+							src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v8.0"
+							nonce="1L3hNQ0b"></script>
+
+						<div id="comment_fb">
+							<div class="fb-comments"
+								data-href="http://localhost:8888/detail-product/${product.seo }"
+								data-numposts="5" data-width="1000"></div>
 						</div>
 					</div>
 				</div>

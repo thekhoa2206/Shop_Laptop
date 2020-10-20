@@ -127,7 +127,7 @@
 
 .main>.left>.filter {
 	margin-top: 20px;
-	height: 220px;
+	height: 230px;
 	border: 1px solid red;
 	background: #ffffff;
 	border-radius: 5px;
@@ -142,30 +142,16 @@
 	font-size: 15px;
 	color: white;
 }
-
-.main>.left>.filter .content select {
-	width: 200px;
-	height: 20px;
-	margin-top: 15px;
-	margin-left: 20px;
-}
-
-.main>.left>.filter .content form {
-	margin-left: 40px;
+.main>.left>.filter .content a{
+	text-decoration: none;
+	color: red;
+	font-size: 14px;
+	margin-left:30px;
 	margin-top: 10px;
 }
-
-.main>.left>.filter .content a {
-	margin-left: 80px;
-}
-
-.main>.left>.filter .content a button {
-	margin-top: 20px;
-	color: red;
-}
-
-.main>.left>.filter .content a:hover button {
-	border: 1px solid red;
+.main>.left>.filter .content a:hover{
+	color: black;
+	text-decoration: underline;
 }
 
 .main>.left>.support {
