@@ -13,10 +13,11 @@ var Shop = {
 	},
 	homePage : function(baseUrl, numberOP) {
 		var sort = Shop.getUrlParameter("sort");
-	
+
 		if (sort != null || sort != undefined) {
-				window.location = baseUrl+"?page=" + numberOP  +"&" + "?field=price&sort=" + sort ;
-			
+			window.location = baseUrl + "?page=" + numberOP + "&"
+					+ "?field=price&sort=" + sort;
+
 		} else {
 			window.location = baseUrl + "?page=" + numberOP;
 		}
@@ -26,26 +27,56 @@ var Shop = {
 	homePrevious : function(baseUrl, numberOfPage) {
 		var currentPage = 0;
 		currentPage = parseInt(Shop.getUrlParameter("page"));
-		if (isNaN(currentPage)) {
-			window.location = baseUrl + "?page=" + 3;
-		} else {
-			if (currentPage > 1) {
-				window.location = baseUrl + "?page=" + (currentPage - 1);
+		var sort = Shop.getUrlParameter("sort");
+		if (sort != null || sort != undefined) {
+			if (isNaN(currentPage)) {
+				window.location = baseUrl + "?page=" + 3 + "&"
+						+ "?field=price&sort=" + sort;
 			} else {
-				document.getElementById("previous").disabled = true;
+				if (currentPage > 1) {
+					window.location = baseUrl + "?page=" + (currentPage - 1)
+							+ "&" + "?field=price&sort=" + sort;
+				} else {
+					document.getElementById("previous").disabled = true;
+				}
+			}
+		} else {
+			if (isNaN(currentPage)) {
+				window.location = baseUrl + "?page=" + 3;
+			} else {
+				if (currentPage > 1) {
+					window.location = baseUrl + "?page=" + (currentPage - 1);
+				} else {
+					document.getElementById("previous").disabled = true;
+				}
 			}
 		}
 	},
 	homeNext : function(baseUrl, numberOfPage) {
 		var currentPage = 0;
 		currentPage = parseInt(Shop.getUrlParameter("page"));
-		if (isNaN(currentPage)) {
-			window.location = baseUrl + "?page=" + 1;
-		} else {
-			if (currentPage < numberOfPage) {
-				window.location = baseUrl + "?page=" + (currentPage + 1);
+		var sort = Shop.getUrlParameter("sort");
+		if (sort != null || sort != undefined) {
+			if (isNaN(currentPage)) {
+				window.location = baseUrl + "?page=" + 1 + "&"
+						+ "?field=price&sort=" + sort;
 			} else {
-				document.getElementById("next").disabled = true;
+				if (currentPage < numberOfPage) {
+					window.location = baseUrl + "?page=" + (currentPage + 1)
+							+ "&" + "?field=price&sort=" + sort;
+				} else {
+					document.getElementById("previous").disabled = true;
+				}
+			}
+		} else {
+			if (isNaN(currentPage)) {
+				window.location = baseUrl + "?page=" + 1;
+			} else {
+				if (currentPage < numberOfPage) {
+					window.location = baseUrl + "?page=" + (currentPage + 1);
+				} else {
+					document.getElementById("next").disabled = true;
+				}
 			}
 		}
 	},
