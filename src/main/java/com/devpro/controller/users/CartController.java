@@ -45,7 +45,7 @@ public class CartController extends BaseController {
 	ProductService productService;
 	@Autowired
 	SaleOrderService saleOrderService;
-	
+
 	@RequestMapping(value = { "/cart/finish" }, method = RequestMethod.POST)
 	public String finish(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
@@ -54,67 +54,69 @@ public class CartController extends BaseController {
 		String customerAddress = null;
 		String customerPhone = null;
 		String customerEmail = null;
-		
-		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
+
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
-				customerPhone = ((User)principal).getPhone();
-				customerName = ((User)principal).getName();
-				customerAddress = ((User)principal).getAddress();
-				customerEmail = ((User)principal).getEmail();
-				
-				model.addAttribute("customerName", ((User)principal).getName());
-				model.addAttribute("customerAddress", ((User)principal).getAddress());
-				model.addAttribute("customerPhone", ((User)principal).getPhone());
-				model.addAttribute("customerEmail", ((User)principal).getEmail());
+				customerPhone = ((User) principal).getPhone();
+				customerName = ((User) principal).getName();
+				customerAddress = ((User) principal).getAddress();
+				customerEmail = ((User) principal).getEmail();
+
+				model.addAttribute("customerName", ((User) principal).getName());
+				model.addAttribute("customerAddress", ((User) principal).getAddress());
+				model.addAttribute("customerPhone", ((User) principal).getPhone());
+				model.addAttribute("customerEmail", ((User) principal).getEmail());
+			} else {
+
+				customerPhone = request.getParameter("customerPhone");
+				customerAddress = request.getParameter("customerAddress");
+				customerName = request.getParameter("customerName");
+				customerEmail = request.getParameter("customerEmail");
+
+				model.addAttribute("customerName", request.getParameter("customerName"));
+				model.addAttribute("customerAddress", request.getParameter("customerAddress"));
+				model.addAttribute("customerPhone", request.getParameter("customerPhone"));
+				model.addAttribute("customerEmail", request.getParameter("customerEmail"));
 			}
-		} else {
-			customerPhone = request.getParameter("customerPhone");
-			customerAddress = request.getParameter("customerAddress");
-			customerName = request.getParameter("customerName");
-			customerEmail = request.getParameter("customerEmail");
-			
-			model.addAttribute("customerName", request.getParameter("customerName"));
-			model.addAttribute("customerAddress", request.getParameter("customerAddress"));
-			model.addAttribute("customerPhone", request.getParameter("customerPhone"));
-			model.addAttribute("customerEmail", request.getParameter("customerEmail"));
 		}
-		
+
 		SaleOrder saleOrder = new SaleOrder();
 		Cart cart = (Cart) httpSession.getAttribute("GIO_HANG");
 		List<CartItem> cartItems = cart.getCartItems();
-		
+
 		BigDecimal sum = new BigDecimal(0);
-		String sumVN =null;
-		for(CartItem item : cartItems) {
+		String sumVN = null;
+		for (CartItem item : cartItems) {
 			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
 			saleOrderProducts.setProduct(productRepo.getOne(item.getProductId()));
 			saleOrderProducts.setQuantity(item.getQuantity());
 			saleOrder.addSaleOrderProducts(saleOrderProducts);
 			for (int i = 1; i <= item.getQuantity(); i++) {
-			sum = sum.add(saleOrderProducts.getProduct().getPrice());
+				sum = sum.add(saleOrderProducts.getProduct().getPrice());
 			}
 			Locale locale = new Locale("vi", "VN");
 			NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-			 sumVN =fmt.format(sum);
+			sumVN = fmt.format(sum);
 		}
-		model.addAttribute("quantityCart", cartItems.size() );
-		model.addAttribute("cartItems", cartItems );
+		model.addAttribute("quantityCart", cartItems.size());
+		model.addAttribute("cartItems", cartItems);
 		model.addAttribute("sumVN", sumVN);
-		saleOrderService.saveOrderProduct(customerAddress, customerName,customerPhone,customerEmail, httpSession);
+		saleOrderService.saveOrderProduct(customerAddress, customerName, customerPhone, customerEmail, httpSession);
 		return "users/finish";
 	}
-
 
 	@RequestMapping(value = { "/cart/check-out" }, method = RequestMethod.GET)
 	public String index(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
 		return "users/checkout";
 	}
-	@RequestMapping(value = { "/cart/check-out/delete-product-cart-with-ajax/{productId}" }, method = RequestMethod.POST)
-	public ResponseEntity<AjaxResponse> subscribe(@RequestBody CartItem data,
-			@PathVariable("productId") int productId, final ModelMap model, final HttpServletRequest request,
-			final HttpServletResponse response) throws Exception {
+
+	@RequestMapping(value = {
+			"/cart/check-out/delete-product-cart-with-ajax/{productId}" }, method = RequestMethod.POST)
+	public ResponseEntity<AjaxResponse> subscribe(@RequestBody CartItem data, @PathVariable("productId") int productId,
+			final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
+			throws Exception {
 
 		HttpSession httpSession = request.getSession();
 		Cart cart = null;
@@ -126,9 +128,9 @@ public class CartController extends BaseController {
 		}
 
 		List<CartItem> cartItems = cart.getCartItems();
-		
-		for(int a=0; a< cartItems.size(); a++) {
-			if(cartItems.get(a).getProductId() == productId) {
+
+		for (int a = 0; a < cartItems.size(); a++) {
+			if (cartItems.get(a).getProductId() == productId) {
 				cartItems.remove(a);
 			}
 		}
@@ -152,7 +154,7 @@ public class CartController extends BaseController {
 
 		List<CartItem> cartItems = cart.getCartItems();
 		boolean isExists = false;
-		int quantity =0;
+		int quantity = 0;
 		for (CartItem item : cartItems) {
 			if (item.getProductId() == data.getProductId()) {
 				isExists = true;
@@ -169,7 +171,7 @@ public class CartController extends BaseController {
 		for (CartItem item : cartItems) {
 			quantity += item.getQuantity();
 		}
-		
+
 		httpSession.setAttribute("SL_SP_GIO_HANG", quantity);
 
 		return ResponseEntity.ok(new AjaxResponse(200, String.valueOf(quantity)));

@@ -23,7 +23,7 @@ import javax.persistence.Transient;
 public class Product extends BaseEntity {
 	@Column(name = "title", length = 500, nullable = false)
 	private String title;
-
+	
 	@Column(name = "price", precision = 13, scale = 2, nullable = false)
 	private BigDecimal price;
 

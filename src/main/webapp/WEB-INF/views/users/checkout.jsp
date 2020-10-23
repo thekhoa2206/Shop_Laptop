@@ -36,15 +36,14 @@
 	<jsp:include page="/WEB-INF/views/users/common/header.jsp"></jsp:include>
 
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" style=" width: 1500px;margin: auto; background: #f8f9fb;">
 
-		<div class="row">
+		<div class="row" style=" width: 1000px;margin: auto; margin-bottom: 50px;">
 
-
-			<div class="col-lg-9">
+			<h1 class="my-4">Thanh toán</h1>
+			<div class="col-lg-9" style="display: flex;">
 
 				<div class="row">
-					<h1 class="my-4">Thanh toán</h1>
 					<div class="col-lg-12 col-md-12 mb-12">
 						<form action="${base }/cart/finish" method="post">
 							<div class="form-group">
@@ -64,7 +63,7 @@
 								</sec:authorize>
 								<sec:authorize access="!isAuthenticated()">
 									<input type="text" name="customerName"
-										placeholder="Vui lòng nhập trên của bạn">
+										placeholder="Vui lòng nhập trên của bạn" style="height: 40px; border: 1px solid red; border-radius: 5px; width: 250px;">
 								</sec:authorize>
 							</div>
 							<div class="form-group">
@@ -84,7 +83,7 @@
 								</sec:authorize>
 								<sec:authorize access="!isAuthenticated()">
 									<input type="text" name="customerPhone"
-										placeholder="Nhập phone">
+										placeholder="Nhập phone" style="height: 40px; border: 1px solid red; border-radius: 5px; width: 250px;">
 								</sec:authorize>
 							</div>
 							<div class="form-group">
@@ -104,7 +103,7 @@
 								</sec:authorize>
 								<sec:authorize access="!isAuthenticated()">
 									<input type="text" name="customerEmail"
-										placeholder="Nhập Email">
+										placeholder="Nhập Email" style="height: 40px; border: 1px solid red; border-radius: 5px; width: 250px;">
 								</sec:authorize>
 							</div>
 							<div class="form-group">
@@ -124,7 +123,7 @@
 								</sec:authorize>
 								<sec:authorize access="!isAuthenticated()">
 									<input type="text" name="customerAddress"
-										placeholder="Vui Lòng nhập địa chỉ của bạn">
+										placeholder="Vui Lòng nhập địa chỉ của bạn" style="height: 40px; border: 1px solid red; border-radius: 5px; width: 250px;">
 								</sec:authorize>
 							</div>
 							<button type="submit" class="btn btn-primary">Thanh toán</button>
@@ -132,10 +131,10 @@
 						</form>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" style="margin-left: 150px;">
 					<div class="col-lg-12 col-md-12 mb-12">
 						<h1 class="my-4"></h1>
-						<table class="table">
+						<table class="table" style="background: white; border-radius: 5px; width: 600px;">
 							<thead>
 								<tr>
 									<th scope="col">#</th>

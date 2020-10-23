@@ -1,31 +1,22 @@
 package com.devpro.services;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.devpro.common.ProductSearch;
 import com.devpro.common.Utilities;
-import com.devpro.entities.Cart;
-import com.devpro.entities.CartItem;
 import com.devpro.entities.Product;
 import com.devpro.entities.ProductImages;
-import com.devpro.entities.SaleOrder;
-import com.devpro.entities.SaleOrderProducts;
-import com.devpro.entities.User;
 import com.devpro.repositories.ProductRepo;
-import com.devpro.repositories.SaleOrderProductsRepo;
 import com.devpro.repositories.SaleOrderRepo;
 
 @Service

@@ -56,7 +56,6 @@
 								NHẬP</button>
 								<span>Hoặc đăng nhập bằng</span>
 							<button class="btn btn-lg btn-primary btn-block" type="submit">Facebook</button>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">Gmail</button>
 						</div>
 					</form>
 				</div>

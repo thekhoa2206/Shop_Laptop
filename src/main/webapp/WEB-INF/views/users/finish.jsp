@@ -25,7 +25,7 @@
 	rel="stylesheet">
 
 </head>
-	
+
 <body>
 
 	<!-- Navigation -->
@@ -49,6 +49,26 @@
 					<div class="row">
 						<h1 class="my-4">Xác nhận đơn hàng</h1>
 					</div>
+					<!-- /.row -->
+					<table class="table" style="margin-bottom: 50px;">
+
+						<tr>
+							<th scope="col">Họ và tên</th>
+							<td>${customerName }</td>
+						</tr>
+						<tr>
+							<th scope="col">Số điện thoại</th>
+							<td>${customerPhone }</td>
+						</tr>
+						<tr>
+							<th scope="col">Email</th>
+							<td>${customerEmail }</td>
+						</tr>
+						<tr>
+							<th scope="col">Địa chỉ</th>
+							<td>${customerAddress }</td>
+						</tr>
+					</table>
 					<div class="row">
 						<div class="col-lg-12 col-md-12 mb-12">
 							<h1 class="my-4"></h1>
@@ -85,29 +105,10 @@
 							</table>
 						</div>
 					</div>
-					<!-- /.row -->
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Họ và tên</th>
-								<th scope="col">Số điện thoại</th>
-								<th scope="col">Email</th>
-								<th scope="col">Địa chỉ</th>
-							</tr>
-
-						</thead>
-						<tbody>
-							<tr>
-								<td>${customerName }</td>
-								<td>${customerPhone }</td>
-								<td>${customerEmail }</td>
-								<td>${customerAddress }</td>
-							</tr>
-
-						</tbody>
-					</table>
-					<a href="${base }/home"
-							class="btn btn-primary btn-sm" style="width:200px; line-height: 28px; margin-left:20px;margin-bottom:50px;">Xác nhận</a>
+					
+					<a href="${base }/home" class="btn btn-primary btn-sm"
+						style="width: 200px; line-height: 28px; margin-left: 20px; margin-bottom: 50px;">Xác
+						nhận</a>
 				</div>
 				<!-- /.col-lg-9 -->
 

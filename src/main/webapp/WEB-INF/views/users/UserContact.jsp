@@ -33,9 +33,9 @@
 		<!-- /header -->
 		<!-- main -->
 		<div class="main">
-			<div class="contact">
+			<div class="contact" style="background:#dce1ed;">
 				<div class="title">
-					<span>Contact Us</span>
+					<span>Liên Hệ</span>
 				</div>
 				<c:if test="${ not empty message }">
 					<div id="alert" role="alert"
@@ -47,13 +47,13 @@
 					modelAttribute="contact">
 					<br>
 					<div class="content">
-						<label for="fname">First Name:</label><br>
+						<label for="fname">Họ và Tên đệm:</label><br>
 						<springform:input path="firstName" id="fname" />
-						<br> <label for="lname">Last Name:</label><br>
+						<br> <label for="lname">Tên:</label><br>
 						<springform:input path="lastName" id="lname" />
-						<br> <label for="email">Email Address:</label><br>
+						<br> <label for="email">Email:</label><br>
 						<springform:input path="email" id="email" />
-						<br> <label for="subject">Subject:</label><br>
+						<br> <label for="subject">Chủ đề:</label><br>
 						<springform:textarea path="subject" id="subject" />
 						<br> <input type="button"
 							style="background: #ff9007; width: 100px; border-radius: 5px; border: 0px; margin-left: 360px;"

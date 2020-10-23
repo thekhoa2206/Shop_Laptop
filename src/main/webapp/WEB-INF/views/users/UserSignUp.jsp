@@ -48,10 +48,10 @@
 			<!-- /top -->
 			<!-- mid -->
 
-			<div class="mid">
+			<div class="mid" style="background: #d6dff3; border-radius: 5px;">
 				<form:form method="post" action="/save-guestUser"
 							modelAttribute="user" enctype="multipart/form-data">
-					<div class="top">
+					<div class="top" style="margin-top: 20px;">
 						<div class="form-row">
 								<div class="form-group col-md-6">
 									<label>Tên đăng nhập</label>
