@@ -41,33 +41,37 @@ public class ProductService {
 
 		}
 		if (productSearch.getKeyword() != null && !productSearch.getKeyword().isEmpty()) {
-			jpql += " and CONCAT(p.title, ' ', p.shortDes, ' ',p.category.seo,' ',p.category.name,' ', p.seo, ' ', p.price) LIKE '%"
+			jpql += " and p.status= " + productSearch.getStatusProduct() +" and CONCAT(p.title, ' ', p.shortDes, ' ',p.category.seo,' ',p.category.name,' ', p.seo, ' ', p.price) LIKE '%"
 					+ productSearch.getKeyword() + "%'";
+
+		}
+		if (productSearch.getStatusProduct() == 1) {
+			jpql += " and p.status= " + productSearch.getStatusProduct() ;
 
 		}
 		if (productSearch.getTypePrice() != null && !productSearch.getTypePrice().isEmpty()) {
 			int price = Integer.parseInt(productSearch.getTypePrice());
 			if (price == 1) {
-				jpql += " and price >= " + 0 + " and price <= " + 5000000;
+				jpql += " and p.status= " + productSearch.getStatusProduct() +" and price >= " + 0 + " and price <= " + 5000000;
 			}
 			if (price == 2) {
-				jpql += " and price >= " + 5000000 + " and price <= " + 10000000;
+				jpql += " and p.status= " + productSearch.getStatusProduct() +" and price >= " + 5000000 + " and price <= " + 10000000;
 
 			}
 			if (price == 3) {
-				jpql += " and price >= " + 10000000 + " and price <= " + 15000000;
+				jpql += " and p.status= " + productSearch.getStatusProduct() +" and price >= " + 10000000 + " and price <= " + 15000000;
 
 			}
 			if (price == 4) {
-				jpql += " and price >= " + 15000000 + " and price <= " + 20000000;
+				jpql += " and p.status= " + productSearch.getStatusProduct() +" and price >= " + 15000000 + " and price <= " + 20000000;
 
 			}
 			if (price == 5) {
-				jpql += " and price >= " + 20000000;
+				jpql +=" and p.status= " + productSearch.getStatusProduct() + " and price >= " + 20000000;
 			}
 		}
 		if (productSearch.getSort() != null && !productSearch.getSort().isEmpty()) {
-			jpql += " order by p.price " + productSearch.getSort();
+			jpql += " and p.status= " + productSearch.getStatusProduct() +" order by p.price " + productSearch.getSort();
 		}
 		Query query = entityManager.createQuery(jpql, Product.class);
 

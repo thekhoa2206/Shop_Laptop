@@ -42,7 +42,7 @@ public class HomeController extends BaseController {
 		String price = request.getParameter("price");
 		String sort = request.getParameter("sort");
 		keyword = request.getParameter("keyword");
-		
+		productSearch.setStatusProduct(1);
 		if (sort != null) {
 			productSearch.setSort(sort);
 		}
@@ -60,7 +60,7 @@ public class HomeController extends BaseController {
 		for (int i = 1; i < numberOfPage + 1; i++) {
 			numberOP.add(i);
 		}
-
+		
 		productSearch.parseRequest(request);
 		model.addAttribute("numberOP", numberOP);
 		model.addAttribute("numberOfPage", numberOfPage);

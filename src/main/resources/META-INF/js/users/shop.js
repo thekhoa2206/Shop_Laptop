@@ -1,4 +1,4 @@
-var Shop = {
+	var Shop = {
 	getUrlParameter : function(sParam) {
 		var sPageURL = window.location.search.substring(1), sURLVariables = sPageURL
 				.split('&'), sParameterName, i;

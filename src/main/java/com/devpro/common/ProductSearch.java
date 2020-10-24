@@ -20,6 +20,7 @@ public class ProductSearch {
 	private String sort; 
 	private String keyword;
 	private String typePrice;
+	private int statusProduct;
 	@Autowired ProductService productService;
 	
 	public void parseRequest(final HttpServletRequest request) { // phân trang
@@ -96,6 +97,14 @@ public class ProductSearch {
 
 	public void setTypePrice(String typePrice) {
 		this.typePrice = typePrice;
+	}
+
+	public int getStatusProduct() {
+		return statusProduct;
+	}
+
+	public void setStatusProduct(int statusProduct) {
+		this.statusProduct = statusProduct;
 	}
 	
 }

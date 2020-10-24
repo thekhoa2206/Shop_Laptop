@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.devpro.entities.AjaxResponse;
 import com.devpro.entities.Contact;
+import com.devpro.repositories.CategoryRepo;
+import com.devpro.repositories.ContactRepo;
 
 @Controller
 public class ContactController{
+	@Autowired
+	ContactRepo contactRepo;
 	@RequestMapping(value = { "/contact" }, method = RequestMethod.GET)
 	public String index(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws Exception {
@@ -50,6 +55,13 @@ public class ContactController{
 		System.out.println(lastName);
 		System.out.println(email);
 		System.out.println(subject);
+		Contact contact = new Contact();
+		contact.setFirstName(firstName);
+		contact.setLastName(lastName);
+		contact.setEmail(email);
+		contact.setSubject(subject);
+		
+		contactRepo.save(contact);
 		return ResponseEntity.ok(new AjaxResponse(200, data));
 	}
 }
