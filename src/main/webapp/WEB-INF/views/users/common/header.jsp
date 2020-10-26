@@ -67,8 +67,7 @@
 						name="keyword"
 						placeholder="Nhập tên điện thoại, laptop, phụ kiện... cần tìm"
 						th:value="${keyword }" required /> <input type="submit"
-						value="Search" style="width: 60px;" /> <input type="button"
-						value="Clear" onclick="clearFilter()" style="width: 60px;" /></li>
+						value="Search" style="width: 60px;" /> </li>
 
 
 				</ul>

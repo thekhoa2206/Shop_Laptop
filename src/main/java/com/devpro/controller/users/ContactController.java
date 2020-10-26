@@ -60,7 +60,7 @@ public class ContactController{
 		contact.setLastName(lastName);
 		contact.setEmail(email);
 		contact.setSubject(subject);
-		
+		contact.setStatus(true);
 		contactRepo.save(contact);
 		return ResponseEntity.ok(new AjaxResponse(200, data));
 	}

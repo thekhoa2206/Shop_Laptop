@@ -80,7 +80,7 @@ public class ProductService {
 			query.setMaxResults(ProductSearch.SIZE_ITEMS_ON_PAGE);
 		}
 
-		return query.getResultList();
+		return query.getResultList(); 
 	}
 
 //	@SuppressWarnings("unchecked")
