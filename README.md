@@ -2,6 +2,8 @@
 
 #Setup
 
+- setup environment JAVA_HOME and MAVEN <br>
+
 1. Clone this repository <br>
 $ git clone https://github.com/thekhoa2206/Shop_Laptop <br>
 $ cd tsp-web <br>
