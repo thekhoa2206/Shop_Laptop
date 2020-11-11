@@ -1,1 +1,1 @@
-java -jar target/com.devpro.shop.jar
+web: java -jar target/com.devpro.shop.jar
