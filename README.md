@@ -6,7 +6,7 @@
 
 1. Clone this repository <br>
 $ git clone https://github.com/thekhoa2206/Shop_Laptop <br>
-$ cd tsp-web <br>
+$ cd shop-Laptop <br>
 
 2. Run <br>
 $ java -jar target/com.devpro.shop.jar <br>
