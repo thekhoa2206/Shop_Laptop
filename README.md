@@ -12,3 +12,5 @@ $ cd shop-Laptop <br>
 $ java -jar target/com.devpro.shop.jar <br>
 
 3. Open up your browser and navigate to http://localhost:8888 <br>
+
+4. Link video demo https://www.youtube.com/watch?v=e2hhF3au-UU&lc=UgxZGaTl7StNrL0jKd14AaABAg
