@@ -1,0 +1,4 @@
+Tài khoản admin: 
+		+ Tài khoản: admin
+		+ Mật khẩu: admin
+		

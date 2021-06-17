@@ -6,6 +6,7 @@ import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -124,7 +125,9 @@ public class SaleOrderService {
 		mailContent += "<p> Địa chỉ: " + saleOrder.getCustomerAddress() + "</p>";
 		mailContent += "<p>Cám ơn bạn đã mua hàng!</p>";
 		mailContent += "<p>Shop ABC</p>";
-
+		
+		 Properties props = new Properties(); 
+		 props.put("mail.smtp.starttls.enable", "true"); 
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 		helper.setFrom("thekhoa09051999@gmail.com", senderName);
